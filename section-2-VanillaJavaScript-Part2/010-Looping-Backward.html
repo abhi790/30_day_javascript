@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Looping Array Backward, looping loops in javascript</title>
+  </head>
+  <body>
+    <h1>Looping Array Backward, looping loops in javascript</h1>
+    <!-- Learning topics and applying at the same time -->
+    <script>
+      "use strict";
+      const abhimanyu = [
+        "Abhimanyu", //firstname
+        "Roy", //lastname
+        1997, //birthYear
+        2026 - 1997, //age
+        "Web Developer", //job
+        ["Akash", "Pankaj", "Anu", "Leone"], //friends
+      ];
+      // iterating in the backward direction
+      for (let i = abhimanyu.length - 1; i >= 0; i--) {
+        const element = abhimanyu[i];
+        console.log(element);
+      }
+
+      //   fun exercise in the gym
+      for (let exercise = 1; exercise < 4; exercise++) {
+        console.log(`--------- Starting exercise ${exercise}---------`);
+        for (let rep = 1; rep < 5; rep++) {
+          console.log(`Exercise ${exercise}: Lifting weight repetition ${rep}`);
+        }
+      }
+    </script>
+  </body>
+</html>

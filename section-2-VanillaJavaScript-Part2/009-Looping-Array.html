@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Looping Array Breaking and Continuing in javascript</title>
+  </head>
+  <body>
+    <h1>Looping Array Breaking and Continuing in javascript</h1>
+    <!-- Learning topics and applying at the same time -->
+    <script>
+      "use strict";
+      const abhimanyu = [
+        "Abhimanyu", //firstname
+        "Roy", //lastname
+        1997, //birthYear
+        2026 - 1997, //age
+        "Web Developer", //job
+        ["Akash", "Pankaj", "Anu", "Leone"], //friends
+      ];
+      const types = [];
+
+      for (let i = 0; i < abhimanyu.length; i++) {
+        const element = typeof abhimanyu[i];
+        console.log(element);
+        // 1st way
+        // types[i] = element;
+
+        // 2nd way, much clear
+        types.push(element);
+      }
+
+      console.log(types);
+
+      const years = [1997, 2007, 1969, 2020];
+      const ages = [];
+
+      const calcAge = (year) => 2026 - year;
+      for (let i = 0; i < years.length; i++) {
+        const year = years[i];
+        const age = calcAge(year);
+        ages.push(age);
+      }
+
+      console.log(ages);
+
+      //   Continue and Break
+      //   log only non-string value on the console
+      console.log("-----ONLY STRINGS-----");
+
+      for (let i = 0; i < abhimanyu.length; i++) {
+        const type = typeof abhimanyu[i];
+        if (type !== "string") continue;
+        console.log(abhimanyu[i], type);
+      }
+      //   log until we hit 'number'
+      console.log("-----BREAK WITH NUMBER-----");
+
+      for (let i = 0; i < abhimanyu.length; i++) {
+        const type = typeof abhimanyu[i];
+        if (type === "number") break;
+        console.log(abhimanyu[i], type);
+      }
+    </script>
+  </body>
+</html>

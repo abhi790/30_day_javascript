@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Methods in Javascript</title>
+  </head>
+  <body>
+    <h1>Array Methods in Javascript</h1>
+    <script>
+      "use strict";
+      const friends = ["Manu"];
+      // Adding elements to the array
+      //   pushing elements at the end of array, and returns the length of the array
+      console.log(friends.push("29"));
+      console.log(friends);
+
+      //   pushing elements at the start of array, and returns the length of the array
+      console.log(friends.unshift("Sonu"));
+      console.log(friends);
+
+      // Removing elements from array
+      //   removing from end using pop, and it will return the removed elements instead of array length
+      console.log(friends.pop()); //Last
+      console.log(friends);
+
+      //   removing from end using shift, and it will return the removed elements instead of array length
+      console.log(friends.shift()); //First
+      console.log(friends);
+
+      //   Accessing elements inside array
+      friends[1] = "Steven";
+      friends[2] = "Oggy";
+      friends[3] = "Jerry";
+      friends[4] = "Joo";
+      friends[5] = "Merky";
+      console.log(friends);
+      // indexOf return the index of element if found and return -1 if not found
+      console.log(friends.indexOf("Jerry"));
+      console.log(friends.indexOf("jerry"));
+
+      //   includes returns true if the element is found in the array or reutrns false if element doesn't exist
+      console.log(friends.includes("Jerry"));
+      console.log(friends.includes("jerry"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrow functions</title>
+  </head>
+  <body>
+    <h1>Arrow functions</h1>
+    <script>
+      "use strict";
+      // Normal functions using function expression
+      const normalFunction = function (birthYear) {
+        return 2026 - birthYear;
+      };
+      //   console.log(normalFunction(1997));
+
+      //   Arrow function
+      const arrowFun = (birthYear) => {
+        return 2026 - birthYear;
+      };
+      const arrowFun2 = (birthYear) => {
+        return 2026 - birthYear;
+      };
+      const arrowFun3 = (birthYear) => 2026 - birthYear;
+
+      console.log(arrowFun(1997));
+      console.log(arrowFun2(1997));
+      console.log(arrowFun3(1997));
+    </script>
+  </body>
+</html>

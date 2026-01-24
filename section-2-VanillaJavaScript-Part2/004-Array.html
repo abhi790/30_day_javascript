@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array in Javascript</title>
+  </head>
+  <body>
+    <h1>Array in Javascript</h1>
+    <script>
+      "use strict";
+      const friends = ["Abhi", "Manu", "Sonu"];
+
+      //   We can mutate variable declared with const but only if they are not premitive value
+      //   set value, add value or change value by accessing index only, if we try to access index which are not available we get undefined
+      //   setting value or changing value can be done with single statement
+      friends[3] = "Anu";
+      //   accessing it, if index doesn't exit we will get undefined on the console
+      console.log(friends[3]);
+
+      //   array length property
+      console.log(friends.length);
+
+      console.log(["Abhi", "Manu", "Sonu"]);
+
+      console.log(friends);
+      const firstName = "Abhimanyu";
+      const birthYear = 1997;
+      const age = 2026 - birthYear;
+      const retirement = 60 - age;
+      //   Array value can be expression also. see 2026 - birthYear
+      const abhimanyu = [
+        firstName,
+        birthYear,
+        2026 - birthYear,
+        60 - age,
+        // it can be another array also
+        friends,
+      ];
+      console.log(abhimanyu);
+    </script>
+  </body>
+</html>

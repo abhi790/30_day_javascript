@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript problem solving</title>
+    <style>
+      body {
+        background: linear-gradient(to right, #fff, #000);
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      console.log("Let's solve some problem questions");
+      const temperatures = [3, -2, -6, -1, "error", 9, 13, 17, 15, 14, 9, 5];
+      // PROBLEM : 1
+      // 1) Understanding the problem
+      // - What is temp amplitude? Answer: difference between highest and lowest temp
+      // - How to compute max and min temperatures?
+      // - What's a sensor error? And what do do?
+
+      // 2) Breaking up into sub-problems
+      // - How to ignore errors?
+      // - Find max value in temp array
+      // - Find min value in temp array
+      // - Subtract min from max (amplitude) and return it
+
+      const calcTempAmplitude = function (temps) {
+        let max = temps[0];
+        let min = temps[0];
+
+        for (let i = 0; i < temps.length; i++) {
+          const curTemp = temps[i];
+          if (typeof curTemp !== "number") continue;
+
+          if (curTemp > max) max = curTemp;
+          if (curTemp < min) min = curTemp;
+        }
+        console.log(min, max);
+
+        return max - min;
+      };
+
+      calcTempAmplitude([3, -2, -6, -1, "error"]);
+      calcTempAmplitude(temperatures);
+      const amplitude = calcTempAmplitude(temperatures);
+      console.log(amplitude);
+
+      //   PROBLEM 2 :
+      // Function should now receive 2 arrays of temps
+
+      // 1) Understanding the problem
+      // - With 2 arrays, should we implement functionality twice? NO! Just merge two arrays
+
+      // 2) Breaking up into sub-problems
+      // - Merge 2 arrays
+
+      const calcTempAmplitudeNew = function (temps, temps2) {
+        const temps3 = temps.concat(temps2);
+
+        let max = temps3[0];
+        let min = temps3[0];
+
+        for (let i = 0; i < temps3.length; i++) {
+          const curTemp = temps3[i];
+          if (typeof curTemp !== "number") continue;
+
+          if (curTemp > max) max = curTemp;
+          if (curTemp < min) min = curTemp;
+        }
+        console.log(min, max);
+
+        return max - min;
+      };
+      const temperatures2 = [4, 5, 7, "faulty", -10, 40, -20];
+
+      const amplitude2 = calcTempAmplitudeNew(temperatures, temperatures2);
+      console.log(`Amplitude ${amplitude2}`);
+    </script>
+  </body>
+</html>

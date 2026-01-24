@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objects in Javascript</title>
+  </head>
+  <body>
+    <h1>Objects in Javascript</h1>
+    <script>
+      "use strict";
+      // Object literals, defining literally :-)
+
+      const abhimanyu = {
+        firstName: "Abhimanyu",
+        lastName: "Roy",
+        birthYear: 1997,
+        age: 2026 - 1997,
+        job: "Web Developer",
+        friends: ["Akash", "Pankaj", "Anu", "Leone"],
+      };
+      console.log(abhimanyu);
+
+      console.log(abhimanyu.firstName);
+      console.log(abhimanyu["firstName"]);
+
+      //   we can use expression inside bracket shown below
+      const nameKey = "Name";
+      console.log(abhimanyu["first" + nameKey]);
+      console.log(abhimanyu["last" + nameKey]);
+
+      //   //using prompt to take user input
+      //   const userInput = prompt("Enter some text and look your console");
+      //   console.log(userInput);
+
+      //   adding property into the object using dot and bracket notation
+      abhimanyu.location = "India";
+      abhimanyu.state = "West Bengal";
+      console.log(abhimanyu);
+
+      //   Challenge
+      // Abhimanyu has 3 friends, and his best frined is Akash
+      console.log(
+        `Abhimanyu has ${abhimanyu.friends.length} friends, and his best frined is ${abhimanyu.friends[0]}`,
+      );
+    </script>
+  </body>
+</html>

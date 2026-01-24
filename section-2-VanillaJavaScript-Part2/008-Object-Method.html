@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objects Method in Javascript</title>
+  </head>
+  <body>
+    <h1>Objects Method in Javascript</h1>
+    <!-- Learning topics and applying at the same time -->
+    <script>
+      "use strict";
+      // Object literals, defining literally :-)
+      console.log("Learning objects methods");
+
+      const abhimanyu = {
+        firstName: "Abhimanyu",
+        lastName: "Roy",
+        birthYear: 1997,
+        job: "Web Developer",
+        friends: ["Akash", "Pankaj", "Anu", "Leone"],
+        hasDriverLicence: true,
+        calcAge: function (birthYear) {
+          return 2026 - birthYear;
+        },
+        calcAge2: function () {
+          console.log(this);
+          return 2026 - this.birthYear;
+        },
+        // we cannot be able to use "this" inside arrow function that's why taking parameter
+        calcAge3: (birthYear) => 2026 - birthYear,
+        calcAge4: function () {
+          this.age = 2026 - this.birthYear;
+          return this.age;
+        },
+        getSummary: function () {
+          return `${this.firstName} is a ${this.age ? this.age : this.calcAge4()}-years old ${this.job}. and he has ${this.hasDriverLicence ? "a" : "no"} driver's licence`;
+        },
+      };
+
+      //   Accessing and invoking method, yeah we call it method not function because it is now a part of object
+      console.log(abhimanyu.calcAge(1997));
+      console.log(abhimanyu["calcAge"](1997));
+
+      //   Better way to implement don't repeat yourself principle in coding
+      console.log(abhimanyu.calcAge2());
+      console.log(abhimanyu["calcAge2"]());
+      console.log(abhimanyu.calcAge3(abhimanyu.birthYear));
+
+      //   it is better to calculate once and store it into a property and only access that property
+      console.log(abhimanyu);
+      abhimanyu.calcAge4(); //need to call because it will calculate and save age property inside object so that we can access it later.
+      //   Better then calling function many times
+      console.log(abhimanyu.age);
+      console.log(abhimanyu.age);
+      console.log(abhimanyu.age);
+
+      //   challenge
+      // "Abhimanyu is a 29 years old teacher. and he has a/no driver's licence"
+
+      console.log(abhimanyu.getSummary());
+    </script>
+    <!-- Challenge in the course -->
+    <script>
+      /* Challenge completed 🙂 */
+
+      const mark = {
+        fullName: "Mark Miller",
+        mass: 78,
+        height: 1.69,
+        calcBMI: function () {
+          this.bmi = this.mass / (this.height * this.height);
+          return this.bmi;
+        },
+      };
+
+      const john = {
+        fullName: "John Smith",
+        mass: 92,
+        height: 1.95,
+        calcBMI: function () {
+          this.bmi = this.mass / (this.height * this.height);
+          return this.bmi;
+        },
+      };
+
+      mark.calcBMI();
+      john.calcBMI();
+
+      mark.bmi > john.bmi
+        ? console.log(
+            `${mark.fullName}'s BMI ${mark.bmi} is higher than ${john.fullName}'s ${john.bmi}!`,
+          )
+        : console.log(
+            `${john.fullName}'s BMI ${john.bmi} is higher than ${mark.fullName}'s ${mark.bmi}!`,
+          );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions Declaration vs Expressions</title>
+  </head>
+  <body>
+    <script>
+      // We can call functions that are declared using function declaration anywhere in the code.
+
+      // We need to first declare functions using functions expression and then we can call it later in the code.
+      "use strict";
+      //   1. Function declaration
+      function calcAge(birthYear) {
+        return 2026 - birthYear;
+      }
+
+      let age1 = calcAge(1997);
+      console.log(age1);
+
+      //   2. Function expression with the help of anonymous function.
+      const calcAge2 = function (birthYear) {
+        return 2026 - birthYear;
+      };
+
+      let age2 = calcAge2(1997);
+      console.log(age2);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript Hoisting and Temporal Dead Zone(TDZ)</title>
+    <style>
+      body {
+        background: linear-gradient(to left, #24ff28, #00ff00);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">
+      Javascript Hoisting and Temporal Dead Zone(TDZ)
+    </h1>
+
+    <p style="color: rgb(3, 3, 3)">
+      variable declared with var is hoisted and it's default value is
+      "undefined", when you try to access its before declaration we will get
+      "undefined" that's the value assigned before execution of the code line by
+      line.
+    </p>
+    <br />
+    <p style="color: rgb(3, 3, 3)">
+      When we try to access variable created using 'let' and 'const', we will
+      get RefernceError saying that 'cannot access "variable" before
+      initialization', before before execution of code it's default value
+      assigned is "uninitialized" - they are not hoisted, they are placed inside
+      TDZ(temporal dead zone), they are block scoped
+    </p>
+    <pre>
+let and const even though declared in global variable are not a part of window object
+      var x = 1;
+      let y = 20;
+      const z = 29;
+
+      console.log(x === window.x); //true
+      console.log(y === window.y); //false
+      console.log(z === window.z); //false
+    </pre>
+    <script>
+      "use strict";
+      console.log("------JAVASCRIPT SCOPE IN PRACTICE------");
+      //   GLOBAL VARIABLE
+      var me = "Abhi";
+      let job = "teacher";
+      const year = 1991;
+
+      // Function calling
+      console.log(addTwo(2, 3));
+      //   uncomment and try to open dev console to see the magic :-)
+      //   console.log(subTwo(2, 3));
+      //   console.log(mulTwo(2, 3));
+      //   console.log(divTwo(2, 3));
+
+      function addTwo(a, b) {
+        return a + b;
+      }
+
+      var subTwo = function (a, b) {
+        return a - b;
+      };
+      const divTwo = function (a, b) {
+        return a / b;
+      };
+
+      let mulTwo = (a, b) => {
+        return a * b;
+      };
+
+      //   let and const even though declared in global variable are not a part of window object
+      var x = 1;
+      let y = 20;
+      const z = 29;
+
+      console.log(x === window.x);
+      console.log(y === window.y);
+      console.log(z === window.z);
+    </script>
+  </body>
+</html>

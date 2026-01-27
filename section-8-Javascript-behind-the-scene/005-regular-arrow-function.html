@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regular vs Arrow functions</title>
+    <style>
+      body {
+        background: linear-gradient(to left, #24ff28, #00ff00);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">Regular function and Arrow functions</h1>
+
+    <p id="result2" style="color: rgb(255, 0, 111)"></p>
+      <script>
+        "use strict";
+
+        // Accessing regular function and arrow function inside method on an object
+        const abhi = {
+            firstName : 'Abhimanyu',
+            birthYear : 1997,
+            calcAge : function (){
+                console.log(this);
+                console.log(2026 - this.birthYear);
+
+                // // PROBLEM ACCESS 'this'
+                // const isMillenial = function () {
+                //     console.log(this);
+                //     console.log(this.birthYear >= 1981 && this.birthYear <= 1998);
+                // }
+
+
+                // // SOLUTION 1 : using SELF variable
+                // const self = this;
+                // const isMillenial = function () {
+                //     console.log(self);
+                //     console.log(self.birthYear >= 1981 && self.birthYear <= 1998);
+                // }
+
+
+                // SOLUTION 2 : using arrow function
+                const isMillenial =  () => {
+                    console.log(this);
+                    console.log(this.birthYear >= 1981 && this.birthYear <= 1998);
+                }
+
+                isMillenial();
+            },
+        }
+        // abhi.calcAge();
+
+
+
+        // Arguments keyword inside function
+        const regularFun = function (a,b) {
+            console.log(arguments);
+            return a + b;
+        }
+
+        const arrowFun = (a,b) => {
+            console.log(arguments);
+            return a + b;
+        }
+
+        // REGULAR FUNCTION HAS ACCESS TO 'arguments' keyword
+        regularFun(2,5);
+        regularFun(2,3,4,5,6);
+
+        // ARROW FUNCTION DOESN'T has access to 'arguments' keyword
+        arrowFun(2,3,4);
+        arrowFun(2,3,4,5,6,7,8);
+
+      </script>
+    </p>
+  </body>
+</html>

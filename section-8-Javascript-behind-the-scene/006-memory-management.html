@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory management, Shallow and Deep Copy</title>
+    <style>
+      body {
+        background: linear-gradient(to left, #18b52b, #55ff55);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">Memory management, Shallow and Deep Copy</h1>
+
+    <p id="result2" style="color: rgb(255, 0, 111)"></p>
+      <script>
+        "use strict";
+        const jessica = {
+            firstName:'Jessica',
+            lastName:'Williams',
+            age :27,
+            family:['sonu','khushi'],
+        }
+        // SHALLOW copy will not creat another object but using same object reference
+        const marriedJessica = jessica;
+        marriedJessica.lastName = "Davis";
+        console.log('Before:', jessica);
+        console.log('After:', marriedJessica);
+        // SHALLOW COPY but looks like deep copy
+        const anotherJessica = {...jessica};
+        anotherJessica.husbandName = 'Abhimanyu';
+        anotherJessica.lastName = "Roy";
+        console.log(jessica);
+        console.log(anotherJessica);
+        // above spread operator fail to accomplish deep copy purpose, array inside object will have same reference to jessica and anotherJessica
+        anotherJessica.family.push('sarita');
+        console.log(jessica);
+        console.log(anotherJessica);
+
+        // DEEP COPY using structuredClone
+        const jessicaClone = structuredClone(jessica);
+        jessicaClone.family.push('krishnawati');
+        jessicaClone.family.push('ankit');
+
+        console.log(jessica);
+        console.log(jessicaClone);
+      </script>
+    </p>
+  </body>
+</html>

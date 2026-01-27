@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript Hoisting and Temporal Dead Zone(TDZ)</title>
+    <style>
+      body {
+        background: linear-gradient(to left, #24ff28, #00ff00);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">This keyword</h1>
+
+    <p style="color: rgb(3, 3, 3)"></p>
+    <br />
+    <p id="result1" style="color: rgb(3, 3, 3)"></p>
+    <p id="result2" style="color: rgb(255, 0, 111)"></p>
+
+    <p style="color: rgb(255, 0, 111)">arrow function doesn't have it's own 'this', it simply borrow 'this' from it's parent context</p>
+      <script>
+        // "use strict";
+        console.log("------Javascript this keyword------");
+        const abhi = {
+          firstName: "Abhimanyu",
+          birthYear: 1997,
+          //   here this will point the abhi object
+          calcAge: function () {
+            console.log(this);
+            return 2026 - this.birthYear;
+          },
+          //   arraw function doesn't have it's own this, it simply borrow this from it's parent context, which in this case is window object, please keep this in mind
+          calcSalary: () => {
+            console.log(this);
+            return 20000;
+          },
+        };
+
+        const sonu = {
+          firstName: "Sonu",
+          birthYear: 2001,
+        };
+
+        sonu.calcAge = abhi.calcAge;
+
+        console.log(
+          `${abhi.firstName} your birth year is ${abhi.birthYear} and you are ${abhi.calcAge()} years old`,
+        );
+        console.log(
+          `${sonu.firstName} your birth year is ${sonu.birthYear} and you are ${sonu.calcAge()} years old,`,
+        );
+
+        document.querySelector("#result1").textContent =
+          `${abhi.firstName} your birth year is ${abhi.birthYear} and you are ${abhi.calcAge()} years old`;
+
+        document.querySelector("#result2").textContent =
+          `${sonu.firstName} your birth year is ${sonu.birthYear} and you are ${sonu.calcAge()} years old`;
+
+        console.log(abhi.calcSalary());
+      </script>
+    </p>
+  </body>
+</html>

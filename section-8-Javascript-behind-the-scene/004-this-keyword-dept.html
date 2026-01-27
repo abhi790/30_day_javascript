@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>This keyword Depth</title>
+    <style>
+      body {
+        background: linear-gradient(to left, #24ff28, #00ff00);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">This keyword Depth</h1>
+
+
+    <p id="result2" style="color: rgb(255, 0, 111)"></p>
+
+
+      <script>
+        "use strict";
+        // print the window object on to the console
+        // console.log(this);
+
+        // print undefined as because calcSalary method is a regular function it is not called on any object that's why it's 'this' is undefined
+        // function calcSalary () {
+        //     console.log(this);
+
+        // }
+        // print the window object on to the console as arrow function doesn't have it's own "this",  it simply borrow 'this' from it's parent which in this case is window
+        // const arrowFunction = () => {
+        //     console.log(this);
+
+        // }
+        // calcSalary();
+        // arrowFunction();
+
+        const abhi = {
+            firstName : 'Abhimanyu',
+            birthYear : 1997,
+            calcAge : function (){
+                console.log(this);
+                // debugger;
+                return 2026 - this.birthYear;
+            },
+            calcArrowFun : () => {
+                console.log(this);
+                return "arrow function returned";
+            }
+        }
+
+        const sonu = {
+            firstName: 'Sonu',
+            birthYear : 2001,
+        }
+        sonu.calcAge = abhi.calcAge;
+        sonu.calcArrowFun = abhi.calcArrowFun;
+        console.log(abhi.calcAge());
+        console.log(abhi.calcArrowFun());
+        console.log(sonu.calcAge());
+        console.log(sonu.calcArrowFun());
+
+        const f = abhi.calcAge;
+        const f2 = sonu.calcAge;
+        console.log(f, f2);
+
+        // But when you try to call functin f and f2, you will get error in the console, while this is perfectly fine to copy a function because function in javascript are treated just like varialble, but in this case you won't have access to 'this'  and 'this.birthYear' which is present inside the object abhi and sonu, that's why you will encounter error, try executing below code
+        f();
+        f2();
+
+      </script>
+    </p>
+  </body>
+</html>

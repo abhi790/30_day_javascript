@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destructuring Array in javascript</title>
+    <style>
+      body {
+        background: linear-gradient(to left, #18b52b, #55ff55);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">Destructuring Array in Javascript</h1>
+
+    <p id="result2" style="color: rgb(255, 0, 111)"></p>
+      <script>
+        "use strict";
+        const resturent = {
+            name:'Classico Italiano',
+            location:'Via Angelo Tanvanti 23, Firenze, Italy',
+            categories:['Italian', 'Pizzaria','Vegetarian', 'Organic'],
+            starterMenu:['Focaccia','Bruschetta','Garlic Bread','Caprese Salad'],
+            mainMenu:['Pizza', 'Pasta','Risotto'],
+
+            orderFood : function (starterIndex, mainIndex){
+                return [this.starterMenu[starterIndex], this.starterMenu[mainIndex]];
+            }
+        };
+        // console.log(resturent);
+
+        // // Array destructuring
+        // const arr = [1,2,3];
+        // const [a,b,c] = arr;
+        // console.log(arr);
+        // console.log(a, b, c);
+
+
+        // // In depth array destructuring
+        // // destructuring in sequence
+        // const [first, second] = resturent.categories;
+        // console.log(first, second);
+
+        // destructuring not in sequence
+        // const [first, , second] = resturent.categories;
+        let [first, , , second] = resturent.categories;
+        console.log(first, second);
+
+        // swapping the two value
+        [second,first] = [first,second];
+        console.log(first,second);
+
+        // Return multiple value from function and destructuring that
+        const [starter, main] = resturent.orderFood(2,0);
+        console.log(starter, main);
+
+        const nested = [2,4, [5,6]];
+        const [one,two,three] = nested;
+        console.log(one, two, three);
+        // SIMPLE WAY
+        // destructuring nested array which is contain within 'three'
+        const [i, j] = three;
+        console.log(i,j);
+        // Another way to do this
+        const [a,b,[x,y]] = nested;
+        console.log(a,b,x,y);
+
+        // DEFAULT VALUE WHILE DESTRUCTURING
+        // const [p,q,r] = [8,9];
+        // console.log(p,q,r); // the value of r is undefined here
+
+        const [p=1,q=1,r=1] = [8,9];
+        console.log(p,q,r); // if there is no value at index 2, then r will take default value provided which in this case 1
+
+
+
+
+
+
+      </script>
+    </p>
+  </body>
+</html>

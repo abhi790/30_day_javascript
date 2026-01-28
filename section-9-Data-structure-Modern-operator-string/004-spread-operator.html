@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using Spread Operator in javascript</title>
+    <style>
+      body {
+        background: linear-gradient(to left, #18b52b, #55ff55);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">Using Spread Operator in javascript</h1>
+
+    <p id="result2" style="color: rgb(255, 0, 111)"></p>
+      <script>
+        "use strict";
+        const restaurent = {
+            name:'Classico Italiano',
+            location:'Via Angelo Tanvanti 23, Firenze, Italy',
+            categories:['Italian', 'Pizzaria','Vegetarian', 'Organic'],
+            starterMenu:['Focaccia','Bruschetta','Garlic Bread','Caprese Salad'],
+            mainMenu:['Pizza', 'Pasta','Risotto'],
+
+            orderFood : function (starterIndex, mainIndex){
+                return [this.starterMenu[starterIndex], this.starterMenu[mainIndex]];
+            },
+            // object destructuring in parameters with default values
+            orderDelivery : function ({address, time='20:00', starterIndex =1, mainIndex=1}){
+                console.log(`Order received! your order containing starter ${restaurent.starterMenu[starterIndex]} main course ${restaurent.mainMenu[mainIndex]} will be deliver to you at or before ${time} to your address ${address}`);
+
+            },
+            orderPasta : function (ingre1, ingre2, ingre3){
+                console.log(`Here is your delicious pasta with ${ingre1}, ${ingre2} and ${ingre3}.`);
+
+            },
+            openingHours : {
+                thu : {
+                    open:12,
+                    close:22,
+                },
+                fri : {
+                    open:11,
+                    close:23,
+                },
+                sat : {
+                    open:0, // Open 24 hours
+                    close:24,
+                },
+            },
+        };
+
+        // console.log(restaurent);
+
+        // Before spread operator we need to manually copy the data like below
+        const myArray = [1,2,3,4,5,6];
+        const badArray = [3,4,myArray[0],myArray[1],myArray[2],myArray[3],myArray[4],myArray[5]];
+        console.log(myArray);
+        console.log(badArray);
+
+
+        // using spread operator
+        const goodArray = [9,8, ...myArray];
+        console.log(goodArray);
+        console.log(...myArray);
+
+        // // Copy array
+        // const mainMenuCopy = [...restaurent.mainMenu]
+        // console.log(mainMenuCopy);
+        // mainMenuCopy.push('Fish curry');
+        // // Above operation will not effect original restaurent mainmenu
+        // console.log(restaurent.mainMenu);
+        // console.log(mainMenuCopy);
+
+
+        // // Join two array using spread operator
+        // const menu = [...restaurent.mainMenu, ...restaurent.starterMenu];
+        // console.log(restaurent.mainMenu);
+        // console.log(restaurent.starterMenu);
+        // console.log(menu);
+
+
+        // SPREAD OPERATOR work on Iterable not just only array
+        // ITERABLES : arrays, string, maps, sets. NOT objects
+        const str = "Abhimanyu";
+        const lettersName = [...str, " ", " all letters"];
+        console.log(str);
+        console.log(lettersName);
+
+
+        // // Take input using prompt
+        // const ingredients = [prompt("Let's make pasta! Ingredient 1?"),prompt("Ingredient 2?"),prompt("Ingredient 3?")]
+        // console.log(ingredients);
+
+        // // Old way
+        // restaurent.orderPasta(ingredients[0],ingredients[1], ingredients[2]);
+        // // Using spread operator
+        // restaurent.orderPasta(...ingredients);
+
+
+        // Spread operator also works with Object even though objects are not Iterable
+        const newRestaurent = {foundedIn:1997, ...restaurent, founder:'Abhimanyu'};
+        console.log(newRestaurent);
+
+        // SHALLOW COPY
+        const restaurentCopy = { ...restaurent};
+        restaurentCopy.name = 'Ristorante Roma';
+        console.log(restaurentCopy.name);
+        console.log(restaurent.name);
+
+        // modification in existing value will effect both original and copy as because they are sharing the same resources in memory
+        restaurentCopy.mainMenu.push("New menu");
+        console.log(restaurent.mainMenu);
+        console.log(restaurentCopy.mainMenu);
+
+        // But when you reassign to copied array as below it will change only copied restaurent not the original restaurent
+        restaurentCopy.mainMenu = ['Fish curry'];
+        console.log(restaurent.mainMenu);
+        console.log(restaurentCopy.mainMenu);
+
+
+
+      </script>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destructuring Object in Javascript</title>
+    <style>
+      body {
+        background: linear-gradient(to left, #18b52b, #55ff55);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">Destructuring Object in Javascript</h1>
+
+    <p id="result2" style="color: rgb(255, 0, 111)"></p>
+      <script>
+        "use strict";
+        const restaurent = {
+            name:'Classico Italiano',
+            location:'Via Angelo Tanvanti 23, Firenze, Italy',
+            categories:['Italian', 'Pizzaria','Vegetarian', 'Organic'],
+            starterMenu:['Focaccia','Bruschetta','Garlic Bread','Caprese Salad'],
+            mainMenu:['Pizza', 'Pasta','Risotto'],
+
+            orderFood : function (starterIndex, mainIndex){
+                return [this.starterMenu[starterIndex], this.starterMenu[mainIndex]];
+            },
+            orderDelivery : function ({address, time='20:00', starterIndex =1, mainIndex=1}){
+                console.log(`Order received! your order containing starter ${restaurent.starterMenu[starterIndex]} main course ${restaurent.mainMenu[mainIndex]} will be deliver to you at or before ${time} to your address ${address}`);
+
+            },
+            openingHours : {
+                thu : {
+                    open:12,
+                    close:22,
+                },
+                fri : {
+                    open:11,
+                    close:23,
+                },
+                sat : {
+                    open:0, // Open 24 hours
+                    close:24,
+                },
+            },
+        };
+        // Last example
+        // Use of object destructuring last example in this sections
+        restaurent.orderDelivery({
+            time:'22:30',
+            address:'Via del Sole, 21',
+            mainIndex:2,
+            starterIndex:2
+        });
+        // using default value
+        restaurent.orderDelivery({
+            address:'Via del Sole, 21',
+            starterIndex:0,
+        })
+        restaurent.orderDelivery({
+            address:'Via del Sole, 21',
+        })
+
+        // We need the exact property name as in resturent
+        const {name, openingHours, categories} = restaurent;
+        console.log(restaurent);
+        console.log(name, openingHours, categories);
+
+        // We can also name the property as we like but we need to map as show below
+        const {name:restaurentName, openingHours:hours, categories:tags} = restaurent;
+        console.log(restaurentName, hours,tags);
+
+        // Default value
+        const {menu = [], starterMenu:starters = []} = restaurent;
+        console.log(menu, starters);
+
+        // Mutating variables
+        let a = 23;
+        let b = 45;
+        console.log(a,b);
+
+        const obj = {a:53,b:34,c:14};
+        // Mutating with help of parenthesis
+        ({a,b} = obj);
+        console.log(a,b);
+
+        // Nested object destructuring
+        const {fri:{open, close}} = openingHours;
+        console.log(`On Friday the restaurent will be open from ${open}AM in the morning to ${close}PM in the night`);
+        // We can also name the varialbe as we like
+        const {sat:{open:op, close:cl}} = openingHours;
+        console.log(`On Saturday the restaurent will be open from ${op}AM in the morning to ${cl}PM in the night that's mean 24Hours opens`);
+
+        // Destructuring withing methods -----------
+        // see just below the object to get example
+
+      </script>
+    </p>
+  </body>
+</html>

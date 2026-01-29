@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nullish Coalescing operator in Javascript</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+    background: linear-gradient(to left, #18b52b, #55ff55);
+    }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">Nullish Coalescing operator in Javascript</h1>
+
+    <p id="result2" style="color: rgb(255, 0, 111)"></p>
+      <script>
+        "use strict";
+
+        // ternary will evaluate to wrong value when we take only falsy value, like in this case 0 is treated as falsy value instead of numerical 0, that will lead to bug in the codebase
+        restaurent.numGuests = 0;
+        const guests1 = restaurent.numGuests ? restaurent.numGuests : 10;
+        console.log(guests1);
+        // pipe operator will also lead to bug in the codebase
+        const guests2 = restaurent.numGuests || 10;
+        console.log(guests2);
+
+        // Let see it how we solve this using nullish coalescing operator
+        // Nullish: null and undefined (NOT 0 or '')
+        const guestCOrect = restaurent.numGuests ?? 10;  //restaurent.numGuests will evaluate to false only if null or undefined it will not take 0 or '' as falsy value.
+        console.log(guestCOrect);
+
+
+
+      </script>
+    </p>
+  </body>
+</html>

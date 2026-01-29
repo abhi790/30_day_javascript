@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rest pattern and Parameters</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+    background: linear-gradient(to left, #18b52b, #55ff55);
+    }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">Rest pattern and Parameters</h1>
+
+    <p id="result2" style="color: rgb(255, 0, 111)"></p>
+      <script>
+        "use strict";
+        const restaurent = {
+            name:'Classico Italiano',
+            location:'Via Angelo Tanvanti 23, Firenze, Italy',
+            categories:['Italian', 'Pizzaria','Vegetarian', 'Organic'],
+            starterMenu:['Focaccia','Bruschetta','Garlic Bread','Caprese Salad'],
+            mainMenu:['Pizza', 'Pasta','Risotto'],
+
+            orderFood : function (starterIndex, mainIndex){
+                return [this.starterMenu[starterIndex], this.starterMenu[mainIndex]];
+            },
+            // object destructuring in parameters with default values
+            orderDelivery : function ({address, time='20:00', starterIndex =1, mainIndex=1}){
+                console.log(`Order received! your order containing starter ${restaurent.starterMenu[starterIndex]} main course ${restaurent.mainMenu[mainIndex]} will be deliver to you at or before ${time} to your address ${address}`);
+
+            },
+            orderPasta : function (ingre1, ingre2, ingre3){
+                console.log(`Here is your delicious pasta with ${ingre1}, ${ingre2} and ${ingre3}.`);
+
+            },
+            orderPizza: function (mainIngradient, ...otherIngradients) {
+                let ingradientString = ``;
+                otherIngradients.forEach((element,index) => {
+                    if(index !== otherIngradients.length - 1){
+                        ingradientString += element + "-";
+                    }
+                    else {
+                        ingradientString += element;
+                    }
+                    // console.log(element);
+
+                });
+                console.log(`Order received! your order containing main ingradient ${mainIngradient} and other ingredients ${ingradientString} will be deliver to you at your address within 30min. Your can track your parsal once you received the tracking id`);
+
+            },
+            openingHours : {
+                thu : {
+                    open:12,
+                    close:22,
+                },
+                fri : {
+                    open:11,
+                    close:23,
+                },
+                sat : {
+                    open:0, // Open 24 hours
+                    close:24,
+                },
+            },
+        };
+
+
+      // // SPREAD Operator - unpack array data
+      // const arr = [1,2,...[3,4,5]];
+      // const [a,b,c] = arr;
+      // console.log(arr);
+      // console.log(...arr);
+      // console.log(a,b,c);
+
+      //   1) Destructuring operation
+      // Rest element must be the last element while collecting value in REST operator
+      // REST operator - because on LEFT SIDE OF =, to pack in an array
+      const [a, b, ...rest] = [1, 2, 3, 4, 5, 6];
+      console.log(a, b, rest);
+
+      const [...allMenu] = [...restaurent.mainMenu, ...restaurent.starterMenu];
+      console.log(allMenu);
+      // We skipped pasta as second menu
+      const [pizza, , risooto, ...othersMenu] = [
+        ...restaurent.mainMenu,
+        ...restaurent.starterMenu,
+      ];
+      console.log(pizza, risooto, othersMenu);
+
+      // REST operator on Object
+      const { sat, ...weekDays } = { ...restaurent.openingHours };
+      console.log(sat, weekDays);
+
+      // REST operation using alias to sat as saturday
+      const { sat: saturday, ...weekdays } = { ...restaurent.openingHours };
+      console.log(saturday, weekdays);
+      console.log(weekDays === weekdays);
+
+      // 2) Functions
+      const add = function (...numbers) {
+        let sum = 0;
+        numbers.forEach((element) => {
+          sum += element;
+        });
+        return sum;
+      };
+
+      console.log(add(1, 2));
+      console.log(add(4, 5, 6, 1, 3, 2));
+      console.log(add(12, 2, 45, 3, 2, 13, 56, 67, 47, 78));
+
+      const numbers = [2, 3, 4, 5];
+      // Add function expecting unpacked value like comma seperated numbers in easy sense
+      // Below two are same way to call the function, one is providing directly comma seperated numbers and the other is taking numbers in an array and then while passing in arguments unpacked using REST operator
+      console.log(add(2, 3, 4, 5));
+      console.log(add(...numbers));
+
+
+    //   we can call by passing distinct items from tomato souce
+      restaurent.orderPizza('Sausage', 'Tomato Souce', "Sandwich", "Butter", "Malai", "Chole", 'Bhatore');
+
+      //  Or we can Create an array of other ingradients and then packing items in an array
+      const otherIngradients = ['Tomato Souce', "Sandwich", "Butter", "Malai", "Chole", 'Bhatore'];
+      restaurent.orderPizza('Sausage', ...otherIngradients);
+
+
+      </script>
+    </p>
+  </body>
+</html>

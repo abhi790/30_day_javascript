@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Short Circuiting && and || </title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+    background: linear-gradient(to left, #18b52b, #55ff55);
+    }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">Short Circuiting && and || </h1>
+
+    <p id="result2" style="color: rgb(255, 0, 111)"></p>
+      <script>
+        "use strict";
+        const restaurent = {
+            name:'Classico Italiano',
+            location:'Via Angelo Tanvanti 23, Firenze, Italy',
+            categories:['Italian', 'Pizzaria','Vegetarian', 'Organic'],
+            starterMenu:['Focaccia','Bruschetta','Garlic Bread','Caprese Salad'],
+            mainMenu:['Pizza', 'Pasta','Risotto'],
+
+            orderFood : function (starterIndex, mainIndex){
+                return [this.starterMenu[starterIndex], this.starterMenu[mainIndex]];
+            },
+            // object destructuring in parameters with default values
+            orderDelivery : function ({address, time='20:00', starterIndex =1, mainIndex=1}){
+                console.log(`Order received! your order containing starter ${restaurent.starterMenu[starterIndex]} main course ${restaurent.mainMenu[mainIndex]} will be deliver to you at or before ${time} to your address ${address}`);
+
+            },
+            orderPasta : function (ingre1, ingre2, ingre3){
+                console.log(`Here is your delicious pasta with ${ingre1}, ${ingre2} and ${ingre3}.`);
+
+            },
+            orderPizza: function (mainIngradient, ...otherIngradients) {
+                let ingradientString = ``;
+                otherIngradients.forEach((element,index) => {
+                    if(index !== otherIngradients.length - 1){
+                        ingradientString += element + "-";
+                    }
+                    else {
+                        ingradientString += element;
+                    }
+                    // console.log(element);
+
+                });
+                console.log(`Order received! your order containing main ingradient ${mainIngradient} and other ingredients ${ingradientString} will be deliver to you at your address within 30min. Your can track your parsal once you received the tracking id`);
+
+            },
+            openingHours : {
+                thu : {
+                    open:12,
+                    close:22,
+                },
+                fri : {
+                    open:11,
+                    close:23,
+                },
+                sat : {
+                    open:0, // Open 24 hours
+                    close:24,
+                },
+            },
+        };
+
+
+        console.log('------------------- OR ------------------');
+        // We have two short circuiting operator in javascript && and ||
+        // Remember falsy value in javascript , refreshing concept
+        // false, null, undefined, '', 0, NaN
+        console.log(3 || 'Abhi');
+        console.log('Abhi' || 3);
+        console.log('' || 'abhi');
+        console.log(null || undefined); //undefined o/p
+        console.log(undefined || null); //null o/p
+        console.log(NaN || 0 || '' || null | undefined || false || 'Abhimanyu');
+        console.log(NaN || 0 || 'Abhimanyu' || false || '');
+        console.log(NaN || "Abhimanyu" || '' || 0);
+        console.log("Abhimanyu" || 0 || 'Sonu' );
+
+        // Can help reducing load on ternary operator
+        // restaurent.numGuests = 23;
+        const guests1 = restaurent.numGuests ? restaurent.numGuests : 10;
+        console.log(guests1);
+        // Using short circuiting operator pipe or OR operator
+        const guests2 = restaurent.numGuests || 10;
+        console.log(guests2);
+        // above solution has loop hole when numberofguest is zero, but we will find a better solution for this in future lecture
+
+        console.log('------------------- AND ------------------');
+        console.log(0 && 'Abhi');
+        console.log(7 && 'Abhi');
+        console.log(null && undefined);
+        console.log(undefined && null);
+        console.log(NaN && 0 && 'Abhimanyu' && false && '');
+        console.log("Abhimanyu" && ' '  && NaN && 0);
+        console.log("Abhimanyu" && 0 && 'Sonu' );
+
+        // Practical example - if orderPizza exist then call orderPizza
+        if(restaurent.orderPizza) {
+            restaurent.orderPizza("mushrooms", "spinach")
+        }
+
+        // Using && to simplify above if statement - restaurent.orderPizza if truthy value so the method will be called
+        restaurent.orderPizza && restaurent.orderPizza("mushrooms", "spinach");
+
+
+
+
+
+
+
+
+
+
+
+      </script>
+    </p>
+  </body>
+</html>

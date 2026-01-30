@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to top left, #28b487, #7dd56f);
+      }
+      h1 {
+        font-family: sans-serif;
+        font-size: 50px;
+        line-height: 1.3;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+        color: white;
+      }
+      button {
+        width: 50px;
+        height: 20px;
+        margin: 10px;
+      }
+      textarea {
+        width: 300px;
+        height: 100px;
+      }
+    </style>
+    <title>Sets in Javascript</title>
+  </head>
+  <body>
+    <h1>Sets in Javascript</h1>
+
+    <script>
+      "use strict";
+      console.log(
+        "Main purpose of Set is to store unique key were order of key is not important, it is used to remove duplicate from array",
+      );
+
+      //   const orderSet = new Set([
+      //     "Pasta",
+      //     "Pizza",
+      //     "Pizza",
+      //     "Risotto",
+      //     "Pasta",
+      //     "Pizza",
+      //   ]);
+      //   console.log(orderSet);
+      //   console.log(new Set("Abhimanyu"));
+
+      //   //   size of set - set of unique value
+      //   console.log(orderSet.size);
+      //   //   checking if key exist in the set using .has()
+      //   console.log(orderSet.has("Pizza"));
+      //   console.log(orderSet.has("Pie"));
+
+      //   //adding key to orderSet
+      //   orderSet.add("Chowmin");
+      //   orderSet.add("Samosa");
+      //   orderSet.add("Burger");
+
+      //   console.log(orderSet.size);
+
+      //   //   deleting key from orderSet
+      //   orderSet.delete("Risotto");
+
+      //   //   cleare set using orderSet.clear()
+
+      //   //   Set is also an Iterable
+      //   for (const order of orderSet) {
+      //     console.log(order);
+      //   }
+
+      //   //   Example
+      //   const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
+      //   const staffUnique = new Set(staff); // {'','',''}
+      //   //   converting from SET to ARRAY is very easy as SET is also an iterable, 2 step - 1.put bracket around set and 2. use spread operator to pack
+      //   const setToArr = [...staffUnique]; // newarr = [...new Set(Iterable)] - Iterable like array,string, ...
+      //   console.log(setToArr);
+
+      //   Before ES2025 we had only 4 methods - size(), has(), delete(), clear()
+
+      // ------------------------------------------xxxxxxxxxxx-------------------------------------------------
+      // ------------------------------------------xxxxxxxxxxx-------------------------------------------------
+
+      // ------------------------------------------xxxxxxxxxxx-------------------------------------------------
+      // ------------------------------------------xxxxxxxxxxx-------------------------------------------------
+
+      //   ES2025 set has some more method introduced
+      //   New operation to make set useful
+      const italianFoods = new Set([
+        "pasta",
+        "gnocchi",
+        "tomatoes",
+        "olive oil",
+        "garlic",
+        "basil",
+      ]);
+
+      const mexicanFoods = new Set([
+        "tortillas",
+        "beans",
+        "rice",
+        "tomatoes",
+        "avocado",
+        "garlic",
+      ]);
+
+      //1. Intersection() methods
+      const conmmonFoods = italianFoods.intersection(mexicanFoods);
+      console.log("Intersection", conmmonFoods);
+      console.log([...conmmonFoods]);
+
+      //   2. Union() methods
+      const italianMixicanFusion = italianFoods.union(mexicanFoods);
+      console.log([...italianMixicanFusion]);
+      //   other way
+      console.log([...new Set([...italianFoods, ...mexicanFoods])]);
+
+      //   3. Difference() methods,
+      const uniqueItalianFoods = italianFoods.difference(mexicanFoods);
+      console.log("Difference Italian : ", [...uniqueItalianFoods]);
+      const uniqueMexicanFoods = mexicanFoods.difference(italianFoods);
+      console.log("Difference Mexican : ", [...uniqueMexicanFoods]);
+
+      // 4. SymmetricDifference() methods
+      const uniqueItalianMexicanFoods =
+        italianFoods.symmetricDifference(mexicanFoods);
+      console.log(uniqueItalianMexicanFoods);
+
+      //   5. isDisjointFrom() methods return true or false not iterable
+      console.log(italianFoods.isDisjointFrom(mexicanFoods));
+      //   6. isSubsetOf() and isSuperSetOf() are two more methods
+    </script>
+  </body>
+</html>

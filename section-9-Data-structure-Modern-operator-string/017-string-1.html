@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to top left, #28b487, #7dd56f);
+      }
+      h1 {
+        font-family: sans-serif;
+        font-size: 50px;
+        line-height: 1.3;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+        color: white;
+      }
+      button {
+        width: 50px;
+        height: 20px;
+        margin: 10px;
+      }
+      textarea {
+        width: 300px;
+        height: 100px;
+      }
+    </style>
+    <title>String part 1 in Javascript</title>
+  </head>
+  <body>
+    <h1>String part 1 in Javascript</h1>
+
+    <script>
+      "use strict";
+
+      const airline = "TAP Air India";
+      const plane = "A280";
+      //   accessing value
+      console.log(airline[0]);
+      console.log(plane[6]); //undefined
+
+      //   length property like array
+      console.log(airline.length);
+      console.log("Abhi".length);
+
+      //   getting index of letter in the string
+      console.log(airline.indexOf("i")); //case sensitive
+      console.log(airline.indexOf("I"));
+      console.log(airline.lastIndexOf("i"));
+      console.log(airline.indexOf("India")); //return index of word also, or -1 if not found the word
+
+      //   slice method
+      console.log(airline.slice(4));
+      console.log(airline.slice(4, 7));
+
+      //   extracting first and last word
+      // first word extraction
+      console.log(airline.slice(0, airline.indexOf(" ")));
+      //   last word extraction
+      console.log(airline.slice(airline.lastIndexOf(" ") + 1));
+
+      //
+      const checkMiddleSeat = function (seat) {
+        // B and E are middle seats
+        const s = seat.slice(-1);
+        if (s === "B" || s === "E") console.log("You got the middle seat :-(");
+        else console.log("You got lucky :-)");
+      };
+
+      checkMiddleSeat("11B");
+      checkMiddleSeat("11C");
+      checkMiddleSeat("1E");
+
+      //   using new operator
+      console.log(new String("Abhi"));
+      console.log(typeof new String("Abhi"));
+      console.log(typeof new String("Abhi").slice(1));
+    </script>
+  </body>
+</html>

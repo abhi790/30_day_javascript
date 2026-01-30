@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+    background: linear-gradient(to left, #18b52b, #55ff55);
+    }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: rgb(132, 53, 53)">Logical assignment operator in javascript</h1>
+
+    <p id="result2" style="color: rgb(255, 0, 111)"></p>
+      <script>
+        "use strict";
+        console.log("");
+        const rest1 = {
+            name:'Capri',
+            numGuests:0,
+        }
+        const rest2 = {
+            name:'La Piazaa',
+            owner:'Giovanni Rossi',
+        }
+
+        // // Using short circuiting, again create problem with falsy value 0(which is numberofguest 0(numerical value) but it treated 0 as falsy value)
+        // rest1.numGuests = rest1.numGuests || 10;
+        // rest2.numGuests = rest2.numGuests || 10;
+        // console.log(rest1);
+        // console.log(rest2);
+
+        // // LOGICAL OR Assignemnt operator, this will also create problem with falsy value 0(which is numberofguest 0 but it treated 0 as falsy value)
+        // rest1.numGuests ||= 10;
+        // rest2.numGuests ||=10;
+        // console.log(rest1);
+        // console.log(rest2);
+
+        // // Above falsy value problem can be solved using nullish coalescing assignment operator that we learned in previous chapter
+        // rest1.numGuests ??= 10;
+        // rest2.numGuests ??= 10;
+        // console.log(rest1);
+        // console.log(rest2);
+
+        // // Using short circuiting
+        // rest1.owner = rest1.owner && "<ANONYMOUS>"; //assign undefined if rest1.owner is undefined
+        // rest2.owner = rest2.owner && "<ANONYMOUS>";
+
+        // LOGICAL AND Assignemnt operator, if rest1.owner is undefined it will not assign undefined in the object rest1 that's indeed an added advantage.
+        rest1.owner &&= "<ANONYMOUS>"; //not assign anything to object rest1 if rest1.owner is undefined using this way only assign truthy value to object not the falsy value.
+        rest2.owner &&= "<ANONYMOUS>";
+        console.log(rest1);
+        console.log(rest2);
+
+    </script>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        font-family: sans-serif;
+        height: 100vh;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        color: white;
+        background: linear-gradient(to top left, #28b487, #7dd56f);
+      }
+      .contaier {
+        display: flex;
+      }
+      h1 {
+        font-size: 3.2rem;
+        line-height: 1.3;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      button {
+        width: 50px;
+        height: 20px;
+        margin: 10px;
+      }
+      textarea {
+        width: 300px;
+        height: 100px;
+      }
+    </style>
+    <title>Higher Order Function in Javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>First class , Higher Order Function in Javascript</h1>
+      <h2>
+        Function that accept other function as input parameter is called higher
+        order function
+      </h2>
+      <br />
+      <h2 class="abstraction"></h2>
+    </div>
+
+    <script>
+      "use strict";
+      //   First class function
+      const oneWord = function (str) {
+        // return str.replaceAll(" ", "").toLowerCase();
+        // using regular expression - even I truely not understand tis
+        return str.replaceAll(/ /g, "").toLowerCase();
+      };
+
+      //   First class function
+      const upperFirstWord = function (str) {
+        const [first, ...others] = str.split(" ");
+        return [first.toUpperCase(), ...others].join(" ");
+      };
+
+      // Higher Order function that other function as input parameter
+      const transformer = function (str, fn) {
+        console.log(`Original string : ${str}`);
+        console.log(`Transformed string : ${fn(str)}`);
+        console.log(`Transformed by: ${fn.name}`);
+
+        const transform = fn(str);
+        return transform;
+      };
+
+      const high5 = function () {
+        console.log("Hight five");
+      };
+
+      //   driver code
+      console.log(oneWord("A string having spaces"));
+      console.log(upperFirstWord("jkll string having spaces"));
+
+      //   Calling a higher order function
+      transformer("Javascript is the best language for web!", upperFirstWord);
+      transformer("javascript is the best language for web!", oneWord);
+      console.log(
+        `Trying clicking anywhere inside body of the page in browser`,
+      );
+
+      document.body.addEventListener("click", high5);
+      document.querySelector(".abstraction").textContent =
+        `Callback function help achieve abstraction in javascript, first class function are call callback function, higher order function take other first class simple function to achieve abstraction, outsourcing other small small functionality and calling them into other Higher order functions`;
+    </script>
+  </body>
+</html>

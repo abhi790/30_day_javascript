@@ -1,0 +1,18 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background: linear-gradient(to top left, #28b487, #7dd56f);
+}
+.container {
+  margin-top: 1rem;
+}

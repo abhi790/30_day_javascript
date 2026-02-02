@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        font-family: sans-serif;
+        height: 100vh;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        background: linear-gradient(to top left, #28b487, #7dd56f);
+      }
+      .contaier {
+        display: flex;
+        flex-direction: row;
+      }
+      h1 {
+        font-size: 3.2rem;
+        line-height: 1.3;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      button {
+        margin: 10px;
+      }
+      textarea {
+        width: 300px;
+        height: 100px;
+      }
+      button {
+        background-color: aliceblue;
+        padding: 1rem;
+      }
+    </style>
+    <title>Closures in javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Closures in javascript</h1>
+      <h2>
+        A function has access to the variale environment (VE) of the execution
+        context in which it was created
+      </h2>
+      <h2>
+        <b>Closure:</b> VE attached to the function, exactly as it was at the
+        time and place the function was created.
+      </h2>
+    </div>
+
+    <script>
+      "use strict";
+      const secureBooking = function () {
+        let passendgerCount = 0;
+
+        return function () {
+          passendgerCount++;
+          console.log(`${passendgerCount} passengers`);
+        };
+      };
+
+      const booker = secureBooking();
+
+      console.log(
+        "A closure is the closed-over variable environment of the execution context in which a function was created, even after that execution context is gone;",
+      );
+      console.log(
+        "A closure gives a function access to all the variable of its parent function, even after that parent function has returned. The function keeps a reference to its outer scope, which preserves the scope chain throughout time",
+      );
+      console.log(
+        "A closure makes sure that a function doesn't loose conncection to vaialbes that existed at the function's birth place",
+      );
+      console.log(
+        "A closure is like a backpack that a function carries around wherever it goes. This backpack has all the variabls that were present in the environment where the function was created.",
+      );
+      console.log(
+        "We do NOT have to manually create closures, this is a Javascript feature that happens automatically. We can't even access closed-over variables explicitly. A closure is NOT a tangible JavaScript object",
+      );
+
+      booker();
+      booker();
+      booker();
+      booker();
+      console.dir(booker);
+
+      //   Coding challenges
+      // Take the IIFE below and at the end of the function, attach an event listener that changes the color of the selected h1 element ('header') to blue, each time the BODY element is clicked. Do NOT select the h1 element again!
+
+      // And now explain to YOURSELF (or someone around you) WHY this worked! Take all the time you need. Think about WHEN exactly the callback function is executed, and what that means for the variables involved in this example.
+
+      // GOOD LUCK 😀
+      // */
+      // 💡
+      (function () {
+        const header = document.querySelector("h1");
+        header.style.color = "red";
+
+        document.querySelector("body").addEventListener("click", function () {
+          header.style.color = "blue";
+        });
+      })();
+    </script>
+  </body>
+</html>

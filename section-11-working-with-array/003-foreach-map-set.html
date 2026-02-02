@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <title>Closures in javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Array foreach method on Map and Set in javascript</h1>
+    </div>
+
+    <script>
+      "use strict";
+      //   MAP
+      const currenciesMap = new Map([
+        ["INR", "Indian Rupees"],
+        ["USD", "United State Dollar"],
+        ["GBP", "Pound Sterling"],
+      ]);
+      //   traversing map using foreach loop
+      console.log("Order of parameter for the callback is (value, key, map)");
+      currenciesMap.forEach(function (value, key, map) {
+        console.log(`${key} : ${value}`);
+      });
+      // SET
+      const currenciesSet = new Set(["INR", "USD", "GBP", "GBP", "INR"]);
+      console.log(
+        "Order of parameter for the callback function is (value, key, set)",
+      );
+      //   traversing set using foreach loop
+      console.log("For set - key is equal to value");
+      currenciesSet.forEach(function (value, key, set) {
+        console.log(`${key} : ${value}`);
+      });
+    </script>
+  </body>
+</html>

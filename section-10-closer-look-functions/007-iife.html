@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        font-family: sans-serif;
+        height: 100vh;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        background: linear-gradient(to top left, #28b487, #7dd56f);
+      }
+      .contaier {
+        display: flex;
+        flex-direction: row;
+      }
+      h1 {
+        font-size: 3.2rem;
+        line-height: 1.3;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      button {
+        margin: 10px;
+      }
+      textarea {
+        width: 300px;
+        height: 100px;
+      }
+      button {
+        background-color: aliceblue;
+        padding: 1rem;
+      }
+    </style>
+    <title>IIFE - Immediately invoke function in javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>IIFE - Immediately invoke function in javascript</h1>
+      <h2>Hello</h2>
+    </div>
+
+    <script>
+      "use strict";
+      const normalFunctionExpression = function () {
+        console.log(
+          "Normal function expression that can be called any number of time",
+        );
+      };
+      normalFunctionExpression();
+      normalFunctionExpression();
+      normalFunctionExpression();
+
+      //   IIFE syntax - it can created once and executed once
+      (function () {
+        console.log("Normal function expression that can be called only once");
+      })();
+      //   IIFE using arrow function
+      (() =>
+        console.log(
+          "Arrow function expression that can be called only once",
+        ))();
+
+      console.log(
+        "IIFE is not useful in javascript, as we can created block scope using {} for data privacy",
+      );
+    </script>
+  </body>
+</html>

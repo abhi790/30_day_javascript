@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        font-family: sans-serif;
+        height: 100vh;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        background: linear-gradient(to top left, #28b487, #7dd56f);
+      }
+      .contaier {
+        display: flex;
+        flex-direction: row;
+      }
+      h1 {
+        font-size: 3.2rem;
+        line-height: 1.3;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      button {
+        margin: 10px;
+      }
+      textarea {
+        width: 300px;
+        height: 100px;
+      }
+      button {
+        background-color: aliceblue;
+        padding: 1rem;
+      }
+    </style>
+    <title>The call and apply methods in Javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>The call and apply methods in Javascript</h1>
+      <button class="buy">Buy new plane</button>
+      <br />
+    </div>
+
+    <script>
+      "use strict";
+      const lufthansa = {
+        airline: "Lufthansa",
+        iataCode: "LH",
+        bookings: [],
+        // book : function(){}
+        book(flightNum, name) {
+          console.log(
+            `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`,
+          );
+          this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+        },
+      };
+      //   //   simple way only for lufthansa object
+      //   lufthansa.book(239, "Abhimany Roy");
+      //   lufthansa.book(635, "Sonu Roy");
+      //   console.log(lufthansa.bookings);
+
+      const book = lufthansa.book;
+      //   //   Modern way to do this, as we avoid using apply method
+      //   const flightData = [543, "Abhi"];
+      //   book.call(lufthansa, ...flightData);
+      //   console.log(lufthansa.bookings);
+
+      //   //   Now we can use bind method also and customize as we want
+      //   const bookLufthansa = book.bind(lufthansa);
+      //   const bookEurowings = book.bind(eurowings);
+      //   const bookAirindia = book.bind(airindia);
+
+      //   // custome function to book flight for lufthansa airline, just provide the flightNumber and passenger name
+      //   const bookLufthansa = book.bind(lufthansa);
+      //   bookLufthansa(249, "Abhimanyu");
+      //   // we can take this further to booking for specific flightNum 23, just give passenger name only
+      //   const bookLH23 = book.bind(lufthansa, 23);
+      //   bookLH23("Abhimanyu");
+      //   bookLH23("Sonu");
+      //   bookLH23("Ankit");
+      //   console.log(lufthansa.bookings);
+
+      // With event listeners
+      lufthansa.planes = 300;
+      lufthansa.buyPlane = function () {
+        console.log(this);
+
+        this.planes++;
+        console.log(this.planes);
+      };
+      //  Here this is refer to lufthansa object
+      lufthansa.buyPlane();
+
+      //  Here 'this' is refer to event listener attached to it, another proof that 'this' is set dynamically so we need to specify this explicitly here.
+      document
+        .querySelector(".buy")
+        // Why bind why not call or apply, because we need the handlerFunction not calling the method itself, call and apply will call the method then and there, but bind will return a function that will eventually called by event listener when the event will occur.
+        .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+
+      // Partial application
+
+      const addTax = (rate, value) => value + value * rate;
+      console.log(addTax(0.1, 200));
+
+      const addGST = addTax.bind(null, 0.18); //order of argument is important.
+      //   addGST = value => value * 0.18;
+      console.log(addGST(1000));
+
+      //   Challenge from instructor to complete above implementation using function returning another function
+      const addTaxRate = function (rate) {
+        return function (value) {
+          return value + value * rate;
+        };
+      };
+      //   gst is 18%
+      const gstCal = addTaxRate(0.18);
+      console.log(gstCal(1000));
+      console.log(gstCal(10000));
+
+      //   Or we can do the same here
+      console.log(addTaxRate(0.18)(1000));
+    </script>
+  </body>
+</html>

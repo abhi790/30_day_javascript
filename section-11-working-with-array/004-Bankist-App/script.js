@@ -77,6 +77,24 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const createUsernames = function (acc) {
+  // acc is the array containing our object list
+  acc.forEach((account) => {
+    // console.log(account);
+    // we want stw as username
+    const username = account.owner
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word[0])
+      .join("");
+    //   account is the individual object, creating a property called username on object account
+    account.username = username;
+  });
+};
+
+createUsernames(accounts);
+console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES

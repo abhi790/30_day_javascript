@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <title>Reduce in Javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Reduce in depth in Javascript</h1>
+    </div>
+
+    <script>
+      "use strict";
+      //   REDUCE - boils ('reduce') all array elements down to one single value e.g - adding all elements together
+      console.log(
+        "REDUCE - boils ('reduce') all array elements down to one single value e.g - adding all elements together",
+      );
+
+      const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+      //   //   accumulator -> SNOWBALL(value adding up to create a single value)
+      //   const balance = movements.reduce(function (acc, cur, i, arr) {
+      //     console.log(`Iteration : ${i} Accumulator : ${acc} Current : ${cur}`);
+      //     return acc + cur;
+      //   }, 0); //setting initial value of accumulator or else it will take first item from array as it's accumulator value.
+      //   console.log(balance);
+
+      //   //   Using for loop
+      //   let balance = 0;
+      //   for (const movement of movements) {
+      //     balance += movement;
+      //   }
+      //   console.log(`Balance using for of loop : ${balance}`);
+
+      // we can rewrite using arrow notation, also has access to index and array
+      const balance = movements.reduce((acc, cur) => acc + cur, 0); //setting initial value of accumulator or else it will take first item from array as it's accumulator value.
+      console.log(balance);
+    </script>
+  </body>
+</html>

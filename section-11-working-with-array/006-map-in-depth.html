@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <title>Map in Javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Map in depth in Javascript</h1>
+    </div>
+
+    <script>
+      "use strict";
+      //   MAP - return a new array containing the results of applying an operation on all original array elements
+      console.log(
+        "MAP - return a new array containing the results of applying an operation on all original array elements",
+      );
+
+      //
+      const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+      const euroToINR = 120;
+      // //   map will return an array of movement in INR, by multiplying euroToINR
+      //   const movementsINR = movements.map(function (movement) {
+      //     return movement * euroToINR;
+      //   });
+      //   console.log(movementsINR);
+
+      //   // callback are more short when using arrow function
+      //   const movementsINR = movements.map((movement) => movement * euroToINR);
+      //   console.log(movementsINR);
+
+      //   // We have also access to index, and array itself just like forEach function
+      //   const movementsINR = movements.map(function (movement, index, array) {
+      //     return `Index : ${index} , Movement : ${movement}, Array : ${array}`;
+      //   });
+      //   console.log(movementsINR);
+      // We can use arrow function as callback as well
+      const movementsINR = movements.map(
+        (movement, index, array) =>
+          `Index : ${index} , Movement : ${movement}, Array : ${array}`,
+      );
+      console.log(movementsINR);
+    </script>
+  </body>
+</html>

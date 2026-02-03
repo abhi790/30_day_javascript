@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <title>Filter in Javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Filter in depth in Javascript</h1>
+    </div>
+
+    <script>
+      "use strict";
+      //   FILTER - return a new array containing the array elements that passed a specified test condition
+      console.log(
+        "FILTER - return a new array containing the array elements that passed a specified test condition",
+      );
+
+      const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+      //   // Only positive values are deposits
+      //   const deposits = movements.filter(function (movement) {
+      //     return movement > 0;
+      //   });
+      //   console.log(deposits);
+
+      //   using arrow function notation
+      const deposits = movements.filter((movement) => movement > 0);
+      console.log(deposits);
+
+      //   // using forof loop
+      //   const depositFor = [];
+      //   for (const movement of movements) {
+      //     movement > 0 && depositFor.push(movement);
+      //   }
+      //   console.log(depositFor);
+
+      // Only withdrawals
+      const withdrawal = movements.filter((movement) => Math.abs(movement < 0));
+      console.log(withdrawal);
+
+      //   // We can also access index, and array itself in callback function
+      //   const movement = movements.filter(function (mov, ind, arr) {
+      //     return mov > 0; //only deposits amount
+      //   });
+      //   console.log(movement);
+    </script>
+  </body>
+</html>

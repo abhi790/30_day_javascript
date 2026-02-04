@@ -77,6 +77,15 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const calcDisplayBalance = function (movements) {
+  //   console.log(movements);
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  return balance;
+};
+const balance = calcDisplayBalance(account1.movements);
+labelBalance.textContent = `${balance} EUR`;
+// console.log(`CalcDisplayBalance : `, balance);
+
 const createUsernames = function (acc) {
   // acc is the array containing our object list
   acc.forEach((account) => {
@@ -93,7 +102,7 @@ const createUsernames = function (acc) {
 };
 
 createUsernames(accounts);
-console.log(accounts);
+// console.log(accounts);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////

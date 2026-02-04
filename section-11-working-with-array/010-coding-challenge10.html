@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <title>Coding chanllenge 3</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Coding challenge 3</h1>
+    </div>
+
+    <script>
+      "use strict";
+      //   const calcAverageHumanAge = (dogsAges) => dogsAges.map((dogAge) => {
+      //       let age = 0;
+      //       age = (dogAge <= 2 && 2 * dogAge) || (dogAge > 2 && 16 + dogAge * 4);
+      //       return age;
+      //     }).filter((age) =>
+      //       age > 18).reduce((acc, value) => acc + value, 0);
+      //       return totalAge / adultDogs.length).toFixed(2);
+
+      const calcAverageHumanAge = (dogsAges) =>
+        dogsAges
+          .map(
+            (dogAge) =>
+              (dogAge <= 2 && 2 * dogAge) || (dogAge > 2 && 16 + dogAge * 4),
+          )
+          .filter((age) => age > 18)
+          .reduce((acc, value, i, arr) => acc + value / arr.length, 0)
+          .toFixed(2);
+
+      console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+      console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+    </script>
+  </body>
+</html>

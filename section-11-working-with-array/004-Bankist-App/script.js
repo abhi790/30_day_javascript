@@ -80,11 +80,33 @@ displayMovements(account1.movements);
 const calcDisplayBalance = function (movements) {
   //   console.log(movements);
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  return balance;
+  labelBalance.textContent = `${balance}€`;
 };
-const balance = calcDisplayBalance(account1.movements);
-labelBalance.textContent = `${balance} EUR`;
-// console.log(`CalcDisplayBalance : `, balance);
+calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  //   console.log(incomes);
+  // setting incomes to labelIncome
+  labelSumIn.textContent = `${incomes}€`;
+
+  const withdrwl = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov);
+  labelSumOut.textContent = `${Math.abs(withdrwl)}€`;
+
+  // show the interest
+  const interest = movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => (deposit * 1.2) / 100)
+    .filter((interest, i, arr) => interest >= 1) //bank will give interest >= 1
+    .reduce((acc, int) => acc + int, 0);
+  console.log(interest);
+  labelSumInterest.textContent = `${interest}€`;
+};
+calcDisplaySummary(account1.movements);
 
 const createUsernames = function (acc) {
   // acc is the array containing our object list

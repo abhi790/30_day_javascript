@@ -83,10 +83,9 @@ const displayMovements = function (movements) {
   });
 };
 
-const calcDisplayBalance = function (movements) {
-  //   console.log(movements);
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance}€`;
+const calcDisplayBalance = function (account) {
+  account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${account.balance}€`;
 };
 
 const calcDisplaySummary = function (account) {
@@ -129,17 +128,23 @@ const createUsernames = function (acc) {
 
 createUsernames(accounts);
 
+const updateUI = function (acc) {
+  // Display movements
+  displayMovements(acc.movements);
+
+  // Display balance
+  calcDisplayBalance(acc);
+
+  // Display summary
+  calcDisplaySummary(acc);
+};
+
 // Event listeners
 let currentAccount;
 btnLogin.addEventListener("click", function (event) {
   // Prevent form from submitting
   event.preventDefault();
-  //   console.log(event);
-  //   console.log(inputLoginUsername.value);
-  //   console.log(inputLoginPin.value);
   currentAccount = accounts.find(function (acc) {
-    // console.log(acc);
-
     return acc.username === inputLoginUsername.value;
   });
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
@@ -148,20 +153,40 @@ btnLogin.addEventListener("click", function (event) {
     // Display UI and message
     labelWelcome.textContent = `Welcome Back, ${userName}`;
     containerApp.style.opacity = 1;
-
-    // Display movements
-    displayMovements(currentAccount.movements);
-
-    // Display balance
-    calcDisplayBalance(currentAccount.movements);
-
-    // Display summary
-    calcDisplaySummary(currentAccount);
+    // Update UI
+    updateUI(currentAccount);
   }
 
   // Clear the username and pin
   inputLoginUsername.value = inputLoginPin.value = "";
   inputLoginPin.blur();
+});
+
+btnTransfer.addEventListener("click", function (event) {
+  // prevent default - page reload doesn't occur while submitting
+  event.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const transferTo = inputTransferTo.value;
+
+  //   search on accounts array
+  const receiveAcc = accounts.find(function (account) {
+    return account.username === transferTo;
+  });
+
+  if (
+    amount > 0 &&
+    receiveAcc &&
+    currentAccount.balance >= amount &&
+    receiveAcc?.username !== currentAccount.username
+  ) {
+    // Doing the transfer
+    receiveAcc.movements.push(amount);
+    currentAccount.movements.push(-amount);
+    // Update UI
+    updateUI(currentAccount);
+  }
+  // Clear the username and pin
+  inputTransferAmount.value = inputTransferTo.value = "";
 });
 
 /////////////////////////////////////////////////

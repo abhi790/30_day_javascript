@@ -189,6 +189,28 @@ btnTransfer.addEventListener("click", function (event) {
   inputTransferAmount.value = inputTransferTo.value = "";
 });
 
+btnClose.addEventListener("click", function (event) {
+  // to avoid page reload when submitted
+  event.preventDefault();
+  const usernameToDelete = inputCloseUsername.value;
+  const userPin = Number(inputClosePin.value);
+  //   find the index of the account which the user want to delete, and remember login user can delete it's own account
+  const itemsAt = accounts.findIndex(
+    (acc) => acc.username === usernameToDelete,
+  );
+  //   item found and login user === user to close account
+  if (
+    itemsAt !== -1 &&
+    usernameToDelete === currentAccount.username &&
+    userPin === currentAccount.pin
+  ) {
+    accounts.splice(itemsAt, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES

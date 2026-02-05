@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <title>Some and Every method in Javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Some and Every method in depth in Javascript</h1>
+    </div>
+
+    <script>
+      "use strict";
+      const account1 = {
+        owner: "Jonas Schmedtmann",
+        movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+        interestRate: 1.2, // %
+        pin: 1111,
+      };
+
+      const account2 = {
+        owner: "Jessica Davis",
+        movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+        interestRate: 1.5,
+        pin: 2222,
+      };
+
+      const account3 = {
+        owner: "Steven Thomas Williams",
+        movements: [200, -200, 340, -300, -20, 50, 400, -460],
+        interestRate: 0.7,
+        pin: 3333,
+      };
+
+      const account4 = {
+        owner: "Sarah Smith",
+        movements: [430, 1000, 700, 50, 90],
+        interestRate: 1,
+        pin: 4444,
+      };
+
+      const accounts = [account1, account2, account3, account4];
+      const movements = [5000, 3400, -150, -790, -3210, -1000, 8500, -30];
+      //   for (const account of accounts) {
+      //     console.log(account.movements);
+      //   }
+
+      // let see example using includes
+      // EQUALITY
+      console.log(movements.includes(-150)); //return true
+      console.log(movements.includes(150)); //return false
+
+      //   SOME - we can specify CONDITION - return true or false based on condition
+      console.log(
+        movements.some(function (move) {
+          return move > 0; //any condition satisfy and some will return true
+        }),
+      );
+
+      console.log(
+        movements.some(function (move) {
+          return move < 0; //any condition satisfy and some will return true
+        }),
+      );
+
+      //   EVERY - this need to satisfy every element to get it true
+      console.log(movements.every((mov) => mov > 0)); //return true only if every element satisfy the condition
+      console.log(movements.every((mov) => mov < 0)); //return true only if every element satisfy the condition
+
+      //   SEPERATE callback
+      const deposit = (mov) => mov > 0;
+      const withdrawal = (mov) => mov < 0;
+      // then we can reuse this function as callback function
+      console.log("Using callback as seperate -------- ");
+      console.log(movements.some(deposit));
+      console.log(movements.some(withdrawal));
+      console.log(movements.every(deposit));
+      console.log(movements.every(withdrawal));
+    </script>
+  </body>
+</html>

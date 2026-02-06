@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <title>Array Sorting in javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Array Sorting in javascript</h1>
+    </div>
+
+    <script>
+      "use strict";
+      //sorting
+
+      const owners = ["Jonas", "Zach", "Adam", "Martha"];
+      // Sorting mutates the original array
+      // console.log(owners);
+      // console.log(owners.sort());
+      // console.log(owners);
+
+      const movements = [-120, 456, 500, -1200, 3000, 4500, -400, -3000, 500];
+      // console.log(movements);
+      // console.log(movements.sort()); //this will not give a correct output, we need custom comparator function
+      // console.log(movements);
+
+      // using custom comparator
+      // Ascending order comparator function
+      const ascendingOrderSorting = function (a, b) {
+        if (a > b) return 1;
+        else if (a < b) return -1;
+      };
+      const ascendingOrderSortigShort = function (a, b) {
+        return a - b; //(a,b)=> a - b
+      };
+      // Descending order comparator function
+      const descendingOrderSorting = function (a, b) {
+        if (a > b) return -1;
+        else if (a < b) return 1;
+      };
+      const decendingOrderSortigShort = function (a, b) {
+        return b - a; //(a,b)=> b - a
+      };
+      console.log("Ascending order sorting");
+      movements.sort(ascendingOrderSortigShort);
+      console.log(movements);
+
+      console.log("Descending order sorting");
+      movements.sort(decendingOrderSortigShort);
+      console.log(movements);
+
+      // changes needs to be done in script.js
+      const displayMovements = function (movements, sort = false) {
+        //
+        const movs = sort ? movements.sort((a, b) => a - b) : movements;
+        movs.forEach((mov, i) => {
+          // ..............
+        });
+
+        // ...........
+      };
+
+      // // event handler for the sort button
+      // // global state variable to preserve the value even after click sorting
+      // let sorted = false;
+      // btnSort.addEventListener('click', function(event) {
+      //   event.preventDefault();
+
+      //   displayMovements(currentAccount.movements, !sorted);
+      //   // set toggle
+      //   sorted = !sorted;
+      // });
+    </script>
+  </body>
+</html>

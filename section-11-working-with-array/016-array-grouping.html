@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <title>Array grouping</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Array grouping in javascript</h1>
+    </div>
+
+    <script>
+      "use strict";
+      const account1 = {
+        movements: [200, -400, 350, 800, -1000, 800, -1000, 200],
+        type: "premium",
+      };
+
+      const account2 = {
+        movements: [200, -400, 350],
+        type: "basic",
+      };
+
+      const account3 = {
+        movements: [200, -400, 350, 800, -1000, 200, 350, 800, -1000, 200],
+        type: "standard",
+      };
+
+      const account4 = {
+        movements: [200, -400],
+        type: "basic",
+      };
+      const account5 = {
+        movements: [200],
+        type: "standard",
+      };
+      const accounts = [account1, account2, account3, account4, account5];
+      console.log(accounts);
+
+      const movement = [200, -400, 350, 800, 200, -400, 5000, -3000, 50000];
+
+      // ARRAY GROUPING
+      // Group by deposits and withdrawals
+      const groupByMovementType = Object.groupBy(movement, function (mov) {
+        return mov > 0 ? "deposits" : "withdrawals";
+      });
+
+      console.log(groupByMovementType);
+
+      // groupByactivitycount
+      const groupByActivity = Object.groupBy(accounts, function (account) {
+        const activityCount = account.movements.length;
+        if (activityCount >= 10) return "Very very active";
+        if (activityCount >= 8) return "very active";
+        if (activityCount >= 2) return "Less active";
+        return "Inactive";
+      });
+
+      console.log(groupByActivity);
+
+      // Group by type
+      const groupByType = Object.groupBy(accounts, function ({ type }) {
+        return type;
+      });
+      console.log(groupByType);
+    </script>
+  </body>
+</html>

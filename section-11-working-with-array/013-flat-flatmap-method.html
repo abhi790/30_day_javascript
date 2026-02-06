@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <title>Flat and FlatMap method in Javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Flat and FlatMap method in depth in Javascript</h1>
+    </div>
+
+    <script>
+      "use strict";
+      const arr = [[1, 2, 3], [4, 5], [6, 7, 8, 9], 10, 11, 12];
+      console.log(arr.flat());
+
+      const arrDeep = [1, [[2, [3]], 4], 5, [6, 7, 8, 9]];
+      console.log(arrDeep.flat()); //doesnot work for deep nesting, only one level nesting is fine
+      console.log(arrDeep.flat(3)); //we need to provide the nesting depth
+
+      const account1 = {
+        owner: "Jonas Schmedtmann",
+        movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+        interestRate: 1.2,
+        pin: 1111,
+      };
+
+      const account2 = {
+        owner: "Jessica Davis",
+        movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+        interestRate: 1.5,
+        pin: 2222,
+      };
+
+      const account3 = {
+        owner: "Steven Thomas Williams",
+        movements: [200, -200, 340, -300, -20, 50, 400, -460],
+        interestRate: 0.7,
+        pin: 3333,
+      };
+
+      const account4 = {
+        owner: "Sarah Smith",
+        movements: [430, 1000, 700, 50, 90],
+        interestRate: 1,
+        pin: 4444,
+      };
+
+      const accounts = [account1, account2, account3, account4];
+
+      // //   longest way to perform this
+      //   const allMovements = accounts.map((account) => account.movements);
+      //   const flatMovements = allMovements.flat();
+      //   const overalBalance = flatMovements.reduce((acc, mov) => acc + mov);
+      //   console.log(overalBalance);
+
+      //   //   Short using method chaining
+      //   const overalBalance = accounts
+      //     .map((acc) => acc.movements)
+      //     .flat()
+      //     .reduce((acc, mov) => acc + mov);
+      //   console.log(overalBalance);
+
+      // Implementation using flatMap as map and flat are frequent operation
+      const overalBalance = accounts
+        .flatMap((account) => account.movements) //but one drawback, flatMap doesn't work on deep nesting, 1 level fine, if more then we need to use flat method explicitly
+        .reduce((acc, mov) => acc + mov);
+      console.log(overalBalance);
+    </script>
+  </body>
+</html>

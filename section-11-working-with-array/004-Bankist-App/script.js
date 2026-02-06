@@ -224,6 +224,23 @@ btnSort.addEventListener("click", function (event) {
   btnSort.textContent = sorted ? "↑ Un-SORT" : "↓ SORT";
 });
 
+//   We can also get DOM Element, let create eventListener to the balace text in the UI
+// Using Array.from() to get list of movement from the UI
+labelBalance.addEventListener("click", function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll(".movements__value"),
+    handlerFunction,
+  );
+  console.log(movementsUI);
+});
+
+const handlerFunction = (element) =>
+  Number(element.textContent.replace("€", ""));
+
+// or we can do this
+const movementsUI2 = [...document.querySelectorAll(".movements__value")];
+console.log(typeof movementsUI2);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES

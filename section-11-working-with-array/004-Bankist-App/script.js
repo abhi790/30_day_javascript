@@ -68,10 +68,9 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
-const displayMovements = function (movements, sort = false) {
+const displayMovements = function (movements) {
   containerMovements.innerHTML = "";
-  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
-  movs.forEach(function (mov, i) {
+  movements.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `
         <div class="movements__row">
@@ -84,9 +83,10 @@ const displayMovements = function (movements, sort = false) {
   });
 };
 
-const calcDisplayBalance = function (account) {
-  account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${account.balance}€`;
+const calcDisplayBalance = function (movements) {
+  //   console.log(movements);
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance}€`;
 };
 
 const calcDisplaySummary = function (account) {
@@ -129,23 +129,17 @@ const createUsernames = function (acc) {
 
 createUsernames(accounts);
 
-const updateUI = function (acc) {
-  // Display movements
-  displayMovements(acc.movements);
-
-  // Display balance
-  calcDisplayBalance(acc);
-
-  // Display summary
-  calcDisplaySummary(acc);
-};
-
 // Event listeners
 let currentAccount;
 btnLogin.addEventListener("click", function (event) {
   // Prevent form from submitting
   event.preventDefault();
+  //   console.log(event);
+  //   console.log(inputLoginUsername.value);
+  //   console.log(inputLoginPin.value);
   currentAccount = accounts.find(function (acc) {
+    // console.log(acc);
+
     return acc.username === inputLoginUsername.value;
   });
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
@@ -154,8 +148,15 @@ btnLogin.addEventListener("click", function (event) {
     // Display UI and message
     labelWelcome.textContent = `Welcome Back, ${userName}`;
     containerApp.style.opacity = 1;
-    // Update UI
-    updateUI(currentAccount);
+
+    // Display movements
+    displayMovements(currentAccount.movements);
+
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    // Display summary
+    calcDisplaySummary(currentAccount);
   }
 
   // Clear the username and pin
@@ -170,76 +171,19 @@ btnTransfer.addEventListener("click", function (event) {
   const transferTo = inputTransferTo.value;
 
   //   search on accounts array
-  const receiveAcc = accounts.find(function (account) {
+  const account = accounts.find(function (account) {
     return account.username === transferTo;
   });
 
-  if (
-    amount > 0 &&
-    receiveAcc &&
-    currentAccount.balance >= amount &&
-    receiveAcc?.username !== currentAccount.username
-  ) {
-    // Doing the transfer
-    receiveAcc.movements.push(amount);
-    currentAccount.movements.push(-amount);
-    // Update UI
-    updateUI(currentAccount);
-  }
-  // Clear the username and pin
-  inputTransferAmount.value = inputTransferTo.value = "";
+  //   console.log(account);
+  if (account !== undefined) {
+    account.movements.push(amount);
+    console.log(
+      `Money trasfer to ${transferTo} of amount ${amount} is success!!`,
+    );
+  } else
+    console.log("Wrong transferto name, make sure entering correct username!!");
 });
-
-btnClose.addEventListener("click", function (event) {
-  // to avoid page reload when submitted
-  event.preventDefault();
-  const usernameToDelete = inputCloseUsername.value;
-  const userPin = Number(inputClosePin.value);
-  //   find the index of the account which the user want to delete, and remember login user can delete it's own account
-  const itemsAt = accounts.findIndex(
-    (acc) => acc.username === usernameToDelete,
-  );
-  //   item found and login user === user to close account
-  if (
-    itemsAt !== -1 &&
-    usernameToDelete === currentAccount.username &&
-    userPin === currentAccount.pin
-  ) {
-    accounts.splice(itemsAt, 1);
-
-    // Hide UI
-    containerApp.style.opacity = 0;
-  }
-});
-
-// event handler for the sort button
-// global state variable to preserve the value even after click sorting
-let sorted = false;
-btnSort.addEventListener("click", function (event) {
-  event.preventDefault();
-
-  displayMovements(currentAccount.movements, !sorted);
-  // set toggle
-  sorted = !sorted;
-  btnSort.textContent = sorted ? "↑ Un-SORT" : "↓ SORT";
-});
-
-//   We can also get DOM Element, let create eventListener to the balace text in the UI
-// Using Array.from() to get list of movement from the UI
-labelBalance.addEventListener("click", function () {
-  const movementsUI = Array.from(
-    document.querySelectorAll(".movements__value"),
-    handlerFunction,
-  );
-  console.log(movementsUI);
-});
-
-const handlerFunction = (element) =>
-  Number(element.textContent.replace("€", ""));
-
-// or we can do this
-const movementsUI2 = [...document.querySelectorAll(".movements__value")];
-console.log(typeof movementsUI2);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////

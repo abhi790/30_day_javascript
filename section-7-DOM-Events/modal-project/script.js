@@ -21,3 +21,18 @@ btnCloseModal.addEventListener("click", closeModalWinHandler);
 
 // when we click outside of modal window it should also close modal
 overlay.addEventListener("click", closeModalWinHandler);
+
+// // Enabling Esc key for closing modal window
+// document.addEventListener("keyup", (e) => {
+//   e.key === "Escape" && closeModalWinHandler();
+// });
+
+// Other way suggested by instructor -
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Escape") {
+    if (!modal.classList.contains("hidden")) {
+      //if the model window is open then only we gonna close that
+      closeModalWinHandler(); //we need to call this manually :-)
+    }
+  }
+});

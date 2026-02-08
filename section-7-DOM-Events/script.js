@@ -6,10 +6,11 @@ const scoreD = document.querySelector(".score");
 const checkD = document.querySelector(".check");
 const guessD = document.querySelector(".guess");
 const highScoreD = document.querySelector(".highscore");
+const againD = document.querySelector(".again");
 // console.log(messageD.textContent);
 // console.log(number.textContent);
 
-const secretNumber = Math.trunc(Math.random() * 20 + 1);
+let secretNumber = Math.trunc(Math.random() * 20 + 1);
 // numberD.textContent = secretNumber;
 
 let score = 20;
@@ -24,7 +25,7 @@ checkD.addEventListener("click", function (event) {
   }
   //   When Player wins
   else if (guessIn === secretNumber) {
-    document.querySelector("body").style.backgroundColor = "#60b347";
+    changeBackground(true); //to green background as we are passing with true argument
     messageD.textContent = "Correct Number :-)";
     highscore = highscore > score ? highscore : score;
     highScoreD.textContent = `${highscore}`;
@@ -33,26 +34,61 @@ checkD.addEventListener("click", function (event) {
   }
   //   When guess is too high - #222
   else if (guessIn >= secretNumber) {
-    document.querySelector("body").style.backgroundColor = "#222";
+    changeBackground(); //without argument will take color as #222
     if (score > 1) {
-      messageD.textContent = "Too High - UpArrow";
-      score--;
-      scoreD.textContent = `${score}`;
+      guessHighMessage();
     } else {
-      messageD.textContent = "You lost the game";
-      scoreD.textContent = "0";
+      lostGameMessage();
     }
   }
   //   When guess is too low - #222
   else if (guessIn <= secretNumber) {
-    document.querySelector("body").style.backgroundColor = "#222";
+    changeBackground(); //without argument will take color as #222
     if (score > 1) {
-      messageD.textContent = "Too Low  - DownArrow";
-      score--;
-      scoreD.textContent = `${score}`;
+      guessLowMessage(score);
     } else {
-      messageD.textContent = "You lost the game";
-      scoreD.textContent = "0";
+      lostGameMessage();
     }
   }
 });
+
+// attaching click event handler
+againD.addEventListener("click", function (event) {
+  event.preventDefault();
+  secretNumber = Math.trunc(Math.random() * 20 + 1);
+  messageD.textContent = "Start guessing...";
+  guessD.value = "";
+  highscore = score;
+  score = 20;
+  numberD.textContent = "?";
+  numberD.style.width = "15rem";
+  scoreD.textContent = `${score}`;
+  changeBackground();
+});
+
+// utility function
+// changing background color based on value passed and default value
+function changeBackground(win = false) {
+  if (win) {
+    document.querySelector("body").style.backgroundColor = "#60b347";
+  } else document.querySelector("body").style.backgroundColor = "#222";
+}
+
+// lost game message
+function lostGameMessage() {
+  messageD.textContent = "You lost the game";
+  scoreD.textContent = "0";
+}
+
+// guess too low message
+function guessLowMessage(score) {
+  messageD.textContent = "Too Low  - DownArrow";
+  score--;
+  scoreD.textContent = `${score}`;
+}
+
+function guessHighMessage(score) {
+  messageD.textContent = "Too High - UpArrow";
+  score--;
+  scoreD.textContent = `${score}`;
+}

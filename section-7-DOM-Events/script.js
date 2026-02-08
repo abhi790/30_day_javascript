@@ -5,22 +5,25 @@
 // document.querySelector('.guess')
 
 "use strict";
-const message = document.querySelector(".message");
-const number = document.querySelector(".number");
-const score = document.querySelector(".check");
-const check = document.querySelector(".check");
-const guess = document.querySelector(".guess");
-// console.log(message.textContent);
+// D means DOM
+const messageD = document.querySelector(".message");
+const numberD = document.querySelector(".number");
+const scoreD = document.querySelector(".check");
+const checkD = document.querySelector(".check");
+const guessD = document.querySelector(".guess");
+// console.log(messageD.textContent);
 // console.log(number.textContent);
 
-message.textContent = "Correct Number!";
-number.textContent = 13;
+messageD.textContent = "Correct Number!";
+const secretNumber = Math.trunc(Math.random() * 20 + 1);
+numberD.textContent = secretNumber;
 
-check.addEventListener("click", function (event) {
-  const guessIn = Number(guess.value);
-  console.log(guessIn, typeof guessIn);
-  console.log(this); //return element on which event listener attached
+let score = 20;
+
+checkD.addEventListener("click", function (event) {
+  const guessIn = Number(guessD.value);
+  //   console.log(this); //return element on which event listener attached
   if (!guessIn) {
-    message.textContent = "No number!";
+    messageD.textContent = "No number!";
   }
 });

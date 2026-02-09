@@ -33,34 +33,57 @@ document.addEventListener("keydown", function (e) {
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
 
-const message = document.createElement("div");
-const header = document.querySelector(".header");
-// adding a class 'cookie-message' to the div message
-message.classList.add("cookie-message");
-// set both text and html simultaneously
-message.innerHTML =
-  'We use cookied for improved functionality and analytics.<button class="btn btn--close-cookie">Got it</button>';
-header.insertAdjacentElement("beforeend", message);
-// A.   Styling using javascript
-message.style.backgroundColor = "#37383d";
-message.style.width = "120%";
+// const message = document.createElement("div");
+// const header = document.querySelector(".header");
+// // adding a class 'cookie-message' to the div message
+// message.classList.add("cookie-message");
+// // set both text and html simultaneously
+// message.innerHTML =
+//   'We use cookied for improved functionality and analytics.<button class="btn btn--close-cookie">Got it</button>';
+// header.insertAdjacentElement("beforeend", message);
+// // A.   Styling using javascript
+// message.style.backgroundColor = "#37383d";
+// message.style.width = "120%";
 
-console.log(message.style.width); //only inline style is accessable
-console.log(message.style.backgroundColor); //only inline style is accessable
-console.log(message.style.color); //style define inside style.css file is not accessible
+// console.log(message.style.width); //only inline style is accessable
+// console.log(message.style.backgroundColor); //only inline style is accessable
+// console.log(message.style.color); //style define inside style.css file is not accessible
 
-// We need another nethod called getComputedStyle to get the styles
-console.log(getComputedStyle(message)); //all the style
-console.log(getComputedStyle(message).backgroundColor); //get only specific style value
+// // We need another nethod called getComputedStyle to get the styles
+// console.log(getComputedStyle(message)); //all the style
+// console.log(getComputedStyle(message).backgroundColor); //get only specific style value
 
-// let increase height
-const increaseHeight =
-  (parseFloat(getComputedStyle(message).height) + 40).toFixed(2) + "px";
-console.log(increaseHeight);
-message.style.height = increaseHeight;
+// // let increase height
+// const increaseHeight =
+//   (parseFloat(getComputedStyle(message).height) + 40).toFixed(2) + "px";
+// console.log(increaseHeight);
+// message.style.height = increaseHeight;
 
-// other way to do this
-// changing primary color of the theme
-document.documentElement.style.setProperty("--color-primary", "orangered");
-// changing inline background color of message element using setProperty('stylename in css, snakecase', 'value')
-message.style.setProperty("background-color", "yellow");
+// // other way to do this
+// // changing primary color of the theme
+// document.documentElement.style.setProperty("--color-primary", "orangered");
+// // changing inline background color of message element using setProperty('stylename in css, snakecase', 'value')
+// message.style.setProperty("background-color", "yellow");
+
+// B.   Attributes
+// We can get access standard attribute which are predefined to an element
+const logo = document.querySelector(".nav__logo");
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+// We can set also
+logo.alt = "Beautiful minimalist logo";
+console.log(logo.alt); //Beautiful minimalist logo
+
+// Non-standard
+console.log(logo.designer); // this is not going to work as designer is not a standard attribute, it is we have defind this inside the element img
+
+// getting non-standard attribute
+console.log(logo.getAttribute("designer"));
+// setting or create if not present a non-standard attribute
+logo.setAttribute("company", "HDFC Bank");
+console.log(logo.getAttribute("company"));
+// getAttribute can also be used for standard attribute as wel;
+console.log(logo.getAttribute("alt")); //Beautiful minimalist logo
+console.log(logo.setAttribute("alt", "HDFC bank logo is changed to fantastic")); //set attribute return undefined
+console.log(logo.getAttribute("alt"));

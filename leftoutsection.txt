@@ -1,3 +1,4 @@
 1. Array Methods Practice
 2. Challenge #5
 3. Pig game in section 7 - basic DOM and Events
+4. 200. Advance DOM -  smooth scrolling

@@ -32,3 +32,35 @@ document.addEventListener("keydown", function (e) {
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
+
+const message = document.createElement("div");
+const header = document.querySelector(".header");
+// adding a class 'cookie-message' to the div message
+message.classList.add("cookie-message");
+// set both text and html simultaneously
+message.innerHTML =
+  'We use cookied for improved functionality and analytics.<button class="btn btn--close-cookie">Got it</button>';
+header.insertAdjacentElement("beforeend", message);
+// A.   Styling using javascript
+message.style.backgroundColor = "#37383d";
+message.style.width = "120%";
+
+console.log(message.style.width); //only inline style is accessable
+console.log(message.style.backgroundColor); //only inline style is accessable
+console.log(message.style.color); //style define inside style.css file is not accessible
+
+// We need another nethod called getComputedStyle to get the styles
+console.log(getComputedStyle(message)); //all the style
+console.log(getComputedStyle(message).backgroundColor); //get only specific style value
+
+// let increase height
+const increaseHeight =
+  (parseFloat(getComputedStyle(message).height) + 40).toFixed(2) + "px";
+console.log(increaseHeight);
+message.style.height = increaseHeight;
+
+// other way to do this
+// changing primary color of the theme
+document.documentElement.style.setProperty("--color-primary", "orangered");
+// changing inline background color of message element using setProperty('stylename in css, snakecase', 'value')
+message.style.setProperty("background-color", "yellow");

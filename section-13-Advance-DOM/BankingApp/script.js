@@ -87,3 +87,13 @@ console.log(logo.getAttribute("company"));
 console.log(logo.getAttribute("alt")); //Beautiful minimalist logo
 console.log(logo.setAttribute("alt", "HDFC bank logo is changed to fantastic")); //set attribute return undefined
 console.log(logo.getAttribute("alt"));
+
+// CLASSES
+// we can add class, remove class using javascript, toggle and even check for any classes
+logo.classList.add("c", "d");
+logo.classList.remove("c", "d");
+logo.classList.toggle("m");
+logo.classList.contains("c");
+
+// DON'T USE EVER
+logo.className = "abhi";

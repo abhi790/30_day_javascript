@@ -1,0 +1,61 @@
+
+// Selecting elements
+console.log(document.documentElement);
+console.log(document.head);
+console.log(document.body);
+
+// Most used
+const header = document.querySelector(".header");
+const allSections = document.querySelectorAll(".section");
+console.log(allSections);
+
+const section = document.getElementById("section--1");
+console.log(section);
+
+// rarely used
+const allButtons = document.getElementsByTagName("button");
+console.log(allButtons);
+
+console.log(document.getElementsByClassName("btn"));
+
+// Creating and inserting elements
+// creating element
+const message = document.createElement("div");
+// adding a class 'cookie-message' to the div message
+message.classList.add("cookie-message");
+// set only text content no html
+// message.textContent = 'We use cookied for improved functionality and analytics.';
+// set both text and html simultaneously
+message.innerHTML =
+  'We use cookied for improved functionality and analytics.<button class="btn btn--close-cookie">Got it</button>';
+
+// //parent.prepend(dom-eleme) append the dom-element as the first child of the parent element
+// // parent.append(dom-ele) append the dom-element as the last child of the parent element
+header.prepend(message);
+// header.append(message);
+
+// // before(message) and after(message) it will add the dom element message before the target element or after the target element, before and after make dom element as the sibling
+// header.before(message);
+// header.after(message);
+
+// Delete elements
+// adding an event listener to newly inserted message element button  having class btn--close-cookie
+document
+  .querySelector(".btn--close-cookie")
+  .addEventListener("click", function () {
+    message.remove();
+  });
+//   this alone will work also to remove message from the dom tree
+// message.remove(); //resently added
+
+// insert after the end of header element or sibling of header
+// header.insertAdjacentElement("afterend", message);
+
+// insert as a first child or after start of header element
+// header.insertAdjacentElement("afterbegin", message);
+
+// insert before the start of header or as sibling of header
+// header.insertAdjacentElement("beforebegin", message);
+
+// insert as the last child of header or before the end of header element
+// header.insertAdjacentElement("beforeend", message);

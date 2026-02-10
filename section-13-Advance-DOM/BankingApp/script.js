@@ -32,29 +32,3 @@ document.addEventListener("keydown", function (e) {
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
-
-// Event propagation, Bubbling
-// try to generate number between 0 and 255
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-
-const randomColor = () =>
-  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
-
-// attaching event handler to nav, its parent and its grandparent
-document.querySelector(".nav__link").addEventListener("click", function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log("LINK", e.target, e.currentTarget);
-  console.log(e.target === e.currentTarget);
-
-  //   We can STOP propagation - not that used,but good to know skill
-  //   e.stopPropagation();
-});
-document.querySelector(".nav__links").addEventListener("click", function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log("CONTAINER", e.target, e.currentTarget);
-});
-document.querySelector(".nav").addEventListener("click", function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log("NAV", e.target, e.currentTarget);
-});

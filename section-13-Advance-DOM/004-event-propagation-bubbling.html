@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Event propagation, Bubbling
+      // try to generate number between 0 and 255
+      const randomInt = (min, max) =>
+        Math.floor(Math.random() * (max - min + 1) + min);
+
+      const randomColor = () =>
+        `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+      // attaching event handler to nav, its parent and its grandparent
+      document
+        .querySelector(".nav__link")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          this.style.backgroundColor = randomColor();
+          console.log("LINK", e.target, e.currentTarget);
+          console.log(e.target === e.currentTarget);
+
+          //   We can STOP propagation - not that used,but good to know skill
+          //   e.stopPropagation();
+        });
+      document
+        .querySelector(".nav__links")
+        .addEventListener("click", function (e) {
+          this.style.backgroundColor = randomColor();
+          console.log("CONTAINER", e.target, e.currentTarget);
+        });
+      document.querySelector(".nav").addEventListener("click", function (e) {
+        this.style.backgroundColor = randomColor();
+        console.log("NAV", e.target, e.currentTarget);
+      });
+    </script>
+  </body>
+</html>

@@ -33,12 +33,26 @@ document.addEventListener("keydown", function (e) {
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
 
-//Smooth page navigation
-document.querySelectorAll(".nav__link").forEach(function (el) {
-  el.addEventListener("click", function (event) {
-    event.preventDefault();
-    const id = this.getAttribute("href");
+// //Smooth page navigation
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (event) {
+//     event.preventDefault();
+//     const id = this.getAttribute("href");
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// });
+
+// Event delegation to parent event listener
+// 1.Add event listener to common parent element
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // 2. Determine what element originated the event
+  //   Matching strategy
+  if (e.target.classList.contains("nav__link")) {
+    const id = e.target.getAttribute("href");
     console.log(id);
     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
-  });
+  }
 });

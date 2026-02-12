@@ -9,10 +9,51 @@
   <body>
     <div class="container">
       <h1>Learning how to use Object oriented feature in javascript</h1>
+      <br />
+      <h2>Prototypal Inheritence</h2>
     </div>
 
     <script>
       "use strict";
+      const container = document.querySelector(".container");
+      const div = document.createElement("div");
+      div.innerHTML = `<pre>
+        <h2>4 Pillars of OOPS</h2>
+        <h2>1. Abstraction - Ignoring or hiding details that don't matter, allowing us to
+            get an overview perspective of the thing we're implementing,
+            instead of messing with details that don't really matter to our .</h2>
+
+        <h2>2. Encapsulation - Keeping properties and methods private inside the class,
+                so they are not accessible from outside the class. Some methods
+                can be exposed as a public interface (API)</h2>
+        <h2>3. Inheritence - Making all properties and methods of a certain class
+            to a child class, forming a hierarchical relationship between classes.
+             This allows us to reuse common logic and to model real-world
+             relationships. </h2>
+        <h2>4. Polymorphism - A child class can overwrite a method it inherited from a
+            parent class[it's more complex than that, but enough for our
+            purposes]. </h2>
+
+        </pre>`;
+      // insert as last element of the container
+      container.insertAdjacentElement("beforeend", div);
+      //   4 pillars of OOPS
+      // 1. Abstraction - Ignoring or hiding details that don't matter, allowing us to get an overview perspective of the thing we're implementing, instead of messing with details that don't really matter to our implementation.
+      // 2. Encapsulation - Keeping properties and methods private inside the class, so they are not accessible from outside the class. Some methods can be exposed as a public interface (API)
+      // 3. Inheritence - Making all properties and methods of a certain class available to a child class, forming a hierarchical relationship between classes. This allows us to reuse common logic and to model real-world relationships.
+      // 4. Polymorphism - A child class can overwrite a method it inherited from a parent class[it's more complex than that, but enough for our purposes].
+
+      // Javascript uses prototypal inheritence to implement oops features
+      // Prototypal inheritence : The prototype contains methods(behavior) that are accessible to all objects linked to that prototype;
+      const content2 = document.createElement("div");
+      content2.innerHTML = `<pre>
+        <h1>Javascript uses prototypal inheritence to implement
+            oops features</h1>
+            <h2> Behavior is delegated to the linked prototype object.
+                </h2>
+        </pre>`;
+
+      container.insertAdjacentElement("beforeend", content2);
     </script>
   </body>
 </html>

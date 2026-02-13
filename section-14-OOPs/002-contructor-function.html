@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Learning how to use Object oriented feature in javascript</h1>
+      <br />
+      <h2>Prototypal Inheritence using constructor functions</h2>
+    </div>
+
+    <script>
+      "use strict";
+      // Javascript implement oops in 3 ways
+      // 1. Constructor functions
+      // 2. ES6 classes
+      // 3.Object.create()
+
+      //   CONSTRUCTOR FUNCTIONS
+      const Person = function (firstname, birthyear) {
+        this.firstname = firstname;
+        this.birthyear = birthyear;
+      };
+      const jonas = new Person("jonas", 1990);
+      console.log(jonas);
+      // new Person() - calling with new keyword will triggered below things
+      // 1. new {empty object} is created
+      // 2. function is called , this = {}
+      // 3. {} linked to prototype
+      // 4. function automatically return {}
+
+      // new Person('abhi', 1997) - calling with new keyword will triggered below things
+      // 1. new {} is created
+      // 2. function is called , this = {}
+      // 3. {} linked to prototype
+      // 4. inside constructor function parameter are used to create properties
+      // 5. function will automatically return object with properties
+
+      const abhi = new Person("abhi", 1997);
+      console.log(abhi);
+      const john = new Person("john", 2000);
+      const jerry = new Person("jerry", 2000);
+      const jay = { firstName: "jay", birthYear: 2004 };
+      console.log(abhi instanceof Person); //true
+      console.log(john instanceof Person); //true
+      console.log(jerry instanceof Person); //true
+      console.log(jay instanceof Person); //false - as jay is not created using constructor function Person
+    </script>
+  </body>
+</html>
